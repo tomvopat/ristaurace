@@ -13,10 +13,10 @@
 <body>
 	<nav class="navigation">
 		<div class="navigation-content">
+			<a class="navigation-logoWrapper" href="/">
+				<img class="navigation-logo" src="images/logo.png">
+			</a>
 			<ul class="navigation-list">
-				<a href="/">
-					<img class="navigation-logo" src="images/logo.png">
-				</a>
 				<li class="navigation-item">
 					<a class="navigation-link" href="/">Domů</a>
 				</li>
@@ -32,7 +32,7 @@
 	<main class="main">
 		<div class="main-content">
 			<h1>Zaznamenání objednávky</h1>
-			<form>
+			<form class="orderForm">
 				<span>Stůl č.</span>
 				<select>
 					<option vlaue=1>1</option>
@@ -40,23 +40,31 @@
 					<option vlaue=3>3</option>
 				</select>
 
-				<h2>Pokrmy</h2>
-				<h3>Denní nabídka</h3>
-				<ul id="daily-items" class="menuList--daily menuList">
-					<!-- GET from REST API -->
-				</ul>
-				<h3>Stálá nabídka</h3>
-				<ul>
-					<li>
-						Svíčková
-						<input type="number" value=0>
-					</li>
-					<li>
-						Pečená kachna
-						<input type="number" value=0>
-					</li>
-				</ul>
-				<input type="submit" value="Odeslat">
+				<div class="orderForm-menu">
+					<div class="orderForm-left">
+						<div class="itemBox">
+							<h3 class="itemBox-heading">Denní nabídka</h3>
+							<ul id="daily-items" class="menuList--daily menuList">
+								<!-- GET from REST API -->
+							</ul>
+						</div>
+						<div class="itemBox">
+							<h3 class="itemBox-heading">Stálá nabídka</h3>
+							<ul id="permanent-items">
+								<!-- GET from REST API -->
+							</ul>
+						</div>
+					</div>
+					<div class="orderForm-right">
+						<div class="itemBox">
+							<h3 class="itemBox-heading">Nápoje</h3>
+							<ul id="drinks" class="menuList--daily menuList">
+								<!-- GET from REST API -->
+							</ul>
+						</div>
+					</div>
+				</div>
+				<input class="orderForm-button" type="submit" value="Odeslat">
 			</form>
 		</div>
 	</main>

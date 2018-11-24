@@ -6,6 +6,10 @@ body, a {
 	color: #6E4A1A;
 }
 
+*::selection {
+	background-color: #B08852;
+}
+
 a {
 	text-decoration: none;
 }
@@ -15,12 +19,27 @@ a {
 	padding: 10px 2vw;
 }
 
-.navigation-list {
+.navigation-content {
 	display: flex;
+	align-items: center;
+}
+
+.navigation-list {
+	display: inline-flex;
+}
+
+.navigation-logoWrapper {
+	flex-basis: 200px;
+
+}
+@media (max-width: 768px) {
+	.navigation-logoWrapper {
+		display: none;
+	}
 }
 
 .navigation-logo {
-	width: 300px;
+	width: 100%;
 	height: auto;
 	margin-right: 20px;
 }
@@ -39,10 +58,13 @@ a {
 	background-color: #B08852;
 }
 
+.main {
+	padding: 0 2vw;
+}
 .main-content {
 	max-width: 1040px;
 	margin: auto;
-	padding: 20px 10px;
+	padding: 20px 0;
 }
 
 
@@ -55,4 +77,41 @@ a {
 .menuList-label {
 	flex-basis: 200px;
 	margin: 0;
+}
+
+.orderForm-menu {
+	display: flex;
+	margin: 0 -10px;
+}
+
+.orderForm-left,
+.orderForm-right {
+	flex-basis: 50%;
+	margin: 0 10px;
+}
+
+.orderForm-right {
+	display: flex;
+}
+
+.orderForm-button {
+	min-width: 150px;
+	margin-top: 20px;
+	padding: 6px 12px;
+	border-radius: 4px;
+	background-color: #F0CA98;
+	border-color: #B08852;
+	font-weight: bold;
+}
+
+.itemBox {
+	flex-basis: 100%;
+	margin-top: 20px;
+	padding: 15px;
+	background-color: #F0CA98;
+	border-radius: 4px;
+}
+
+.itemBox-heading {
+	margin-top: 0;
 }
