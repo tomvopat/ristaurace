@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>rIStaurace - informační systém pro restaurace</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="styles/reset.css" />
+	<link rel="stylesheet" type="text/css" href="styles/global.css" />
+	<script src="scripts/global.js"></script>
+</head>
+<body>
+	<nav class="navigation">
+		<div class="navigation-content">
+			<ul class="navigation-list">
+				<a href="/">
+					<img class="navigation-logo" src="images/logo.png">
+				</a>
+				<li class="navigation-item">
+					<a class="navigation-link" href="/">Domů</a>
+				</li>
+				<li class="navigation-item">
+					<a class="navigation-link" href="#">Nová objednávka</a>
+				</li>
+				<li class="navigation-item">
+					<a class="navigation-link" href="#">Výpis objednávek</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<main class="main">
+		<div class="main-content">
+			<h1>Zaznamenání objednávky</h1>
+			<form>
+				<span>Stůl č.</span>
+				<select>
+					<option vlaue=1>1</option>
+					<option vlaue=2>2</option>
+					<option vlaue=3>3</option>
+				</select>
+
+				<h2>Pokrmy</h2>
+				<h3>Denní nabídka</h3>
+				<ul>
+					<li>
+						Svíčková
+						<input type="number" value=0>
+					</li>
+					<li>
+						Pečená kachna
+						<input type="number" value=0>
+					</li>
+				</ul>
+				<h3>Stálá nabídka</h3>
+				<ul>
+					<li>
+						Svíčková
+						<input type="number" value=0>
+					</li>
+					<li>
+						Pečená kachna
+						<input type="number" value=0>
+					</li>
+				</ul>
+				<input type="submit" value="Odeslat">
+			</form>
+		</div>
+	</main>
+</body>
+</html>
