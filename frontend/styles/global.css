@@ -3,11 +3,11 @@ body {
 	background-color: #fff;
 }
 body, a {
-	color: #6E4A1A;
+	color: #432300;
 }
 
 *::selection {
-	background-color: #B08852;
+	background-color: #FF8500;
 }
 
 a {
@@ -15,7 +15,7 @@ a {
 }
 
 .navigation {
-	background-color: #F0CA98;
+	background-color: #FFD2A0;
 	padding: 10px 2vw;
 }
 
@@ -50,12 +50,13 @@ a {
 }
 
 .navigation-link {
+	margin-left: 10px;
 	padding: 12px 20px;
-	transition: .1s ease-in background-color;
+	transition: .2s ease-in background-color;
 	font-weight: bold;
 }
 .navigation-link:hover {
-	background-color: #B08852;
+	background-color: #FF8500;
 }
 
 .main {
@@ -99,16 +100,22 @@ a {
 	margin-top: 20px;
 	padding: 6px 12px;
 	border-radius: 4px;
-	background-color: #F0CA98;
-	border-color: #B08852;
+	color: #fff;
+	background-color: #FF8500;
+	border-style: none;
 	font-weight: bold;
+	cursor: pointer;
+	transition: .2s ease-in background-color;
+}
+.orderForm-button:hover {
+	background-color: #432300;
 }
 
 .itemBox {
 	flex-basis: 100%;
 	margin-top: 20px;
 	padding: 15px;
-	background-color: #F0CA98;
+	background-color: #FFD2A0;
 	border-radius: 4px;
 }
 
