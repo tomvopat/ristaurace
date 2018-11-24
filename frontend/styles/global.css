@@ -44,3 +44,15 @@ a {
 	margin: auto;
 	padding: 20px 10px;
 }
+
+
+.menuList-item {
+	display: flex;
+	align-items: center;
+	margin-top: 10px;
+}
+
+.menuList-label {
+	flex-basis: 200px;
+	margin: 0;
+}

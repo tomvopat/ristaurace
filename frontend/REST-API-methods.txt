@@ -3,10 +3,14 @@ v závorkách příklad URL API
 
 Menu
 * GET položky v denní nabídce (/api/menu-items/daily)
-	** stačí asi název položky
+	** id položky
+	** název položky
+	** cena
 	** příp. informace jestli je ještě dostupná (je pro její přípravu dostatek surovin), aby se dala v designu třeba zešedivět
 * GET položky stálého menu (/api/menu-items/permanent)
-	** stačí asi název položky
+	** id položky
+	** název položky
+	** cena
 	** příp. informace jestli je ještě dostupná (je pro její přípravu dostatek surovin), aby se dala v designu třeba zešedivět
 
 Objednávky

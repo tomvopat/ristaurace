@@ -1,0 +1,22 @@
+{
+	"result": [
+		{
+			"id": 1,
+			"name": "Svíčková",
+			"price": 159,
+			"available": true
+		},
+		{
+			"id": 2,
+			"name": "Smažák",
+			"price": 139,
+			"available": true
+		},
+		{
+			"id": 3,
+			"name": "Pečená kachna",
+			"price": 179,
+			"available": true
+		}
+	]
+}

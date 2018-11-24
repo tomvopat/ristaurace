@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="styles/reset.css" />
 	<link rel="stylesheet" type="text/css" href="styles/global.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="scripts/global.js"></script>
 </head>
 <body>
@@ -41,15 +42,8 @@
 
 				<h2>Pokrmy</h2>
 				<h3>Denní nabídka</h3>
-				<ul>
-					<li>
-						Svíčková
-						<input type="number" value=0>
-					</li>
-					<li>
-						Pečená kachna
-						<input type="number" value=0>
-					</li>
+				<ul id="daily-items" class="menuList--daily menuList">
+					<!-- GET from REST API -->
 				</ul>
 				<h3>Stálá nabídka</h3>
 				<ul>
