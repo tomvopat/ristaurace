@@ -2,7 +2,7 @@ let createMenuItemHtml = function(item) {
 	let menuItemHtml =
 		'<li class=\"menuList-item\">'
 		+	'<label class="menuList-label" for="item-' + item.id + '">' + item.name + '</label>'
-		+	'<input type=\"number\" value=0 min="0" max="100" name=\"item-' + item.id + '\">'
+		+	'<input class="menuList-input" type=\"number\" value=0 min="0" max="100" name=\"item-' + item.id + '\">'
 		+ '</li>';
 	return menuItemHtml;
 }

@@ -14,8 +14,14 @@ a {
 	text-decoration: none;
 }
 
+input, select {
+	height: 1.5em;
+	border-radius: 4px;
+	border: 1px solid #432300;
+}
+
 .navigation {
-	background-color: #FFD2A0;
+	background-color: #432300;
 	padding: 10px 2vw;
 }
 
@@ -53,7 +59,9 @@ a {
 	margin-left: 10px;
 	padding: 12px 20px;
 	transition: .2s ease-in background-color;
+	color: #fff;
 	font-weight: bold;
+	border-radius: 2px;
 }
 .navigation-link:hover {
 	background-color: #FF8500;
@@ -69,20 +77,41 @@ a {
 }
 
 
+.table {
+	margin-top: 2em;
+	font-size: 1.1em;
+}
+
+.table-select {
+	width: 200px;
+	margin-left: 20px;
+	font-size: 1.1em;
+	text-align-last: center;
+}
+
+
 .menuList-item {
 	display: flex;
 	align-items: center;
-	margin-top: 10px;
+	justify-content: space-between;
+	padding: 10px 0;
+}
+
+.menuList-item + .menuList-item {
+	border-top: 1px dashed #432300;
 }
 
 .menuList-label {
 	flex-basis: 200px;
 	margin: 0;
 }
+.menuList-input {
+	text-align: center;
+}
 
 .orderForm-menu {
 	display: flex;
-	margin: 0 -10px;
+	margin: 20px -10px 0;
 }
 
 .orderForm-left,
@@ -107,8 +136,10 @@ a {
 }
 
 .orderForm-button {
+	display: block;
 	min-width: 150px;
-	margin-top: 20px;
+	height: auto;
+	margin: 2em auto 0;
 	padding: 6px 12px;
 	border-radius: 4px;
 	color: #fff;
@@ -131,5 +162,10 @@ a {
 }
 
 .itemBox-heading {
-	margin-top: 0;
+	margin: -15px -15px 10px;
+	padding: 15px;
+	background-color: #432300;
+	color: #fff;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
 }
