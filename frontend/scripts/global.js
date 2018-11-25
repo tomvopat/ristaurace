@@ -7,6 +7,11 @@ let createMenuItemHtml = function(item) {
 	return menuItemHtml;
 }
 
+let createOrderItemHtml = function(item) {
+	
+}
+
+
 $.ajax({
 	type: "GET",
 	url: "http://www.mocky.io/v2/5bf990203200006200f22560",

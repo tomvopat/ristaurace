@@ -6,6 +6,10 @@ body, a {
 	color: #432300;
 }
 
+* {
+	box-sizing: border-box;
+}
+
 *::selection {
 	background-color: #FF8500;
 }
@@ -20,8 +24,28 @@ input, select {
 	border: 1px solid #432300;
 }
 
-.navigation {
+.button {
+	margin: 2em 0 0;
+	padding: 9px 18px;
+	border-radius: 4px;
+	border-style: none;
+	color: #fff;
+	background-color: #FF8500;
+	font-weight: bold;
+	cursor: pointer;
+	transition: .2s ease-in background-color;
+	font-size: 15px;
+}
+.button + .button {
+	margin-left: 10px;
+}
+
+.button:hover {
 	background-color: #432300;
+}
+
+.navigation {
+	background-color: #000;
 	padding: 10px 2vw;
 }
 
@@ -35,6 +59,8 @@ input, select {
 }
 
 .navigation-logoWrapper {
+	display: flex;
+	align-items: center;
 	flex-basis: 200px;
 
 }
@@ -140,21 +166,50 @@ input, select {
 	min-width: 150px;
 	height: auto;
 	margin: 2em auto 0;
-	padding: 6px 12px;
-	border-radius: 4px;
-	color: #fff;
-	background-color: #FF8500;
-	border-style: none;
-	font-weight: bold;
-	cursor: pointer;
-	transition: .2s ease-in background-color;
-}
-.orderForm-button:hover {
-	background-color: #432300;
 }
 
+
+.ordersList {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 -10px;
+}
+
+.ordersList .ordersList-item {
+	position: relative;
+	flex-basis: calc(50% - 20px);
+	margin: 15px 10px;
+}
+
+@media (max-width: 768px) {
+	.ordersList .ordersList-item {
+		flex-basis: 100%;
+	}
+}
+
+.ordersList-timer {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	color: #fff;
+	z-index: 10;
+	font-size: 1.2em;
+}
+
+.ordersList-content {
+	display: flex;
+	margin: 0 -15px;
+}
+
+.ordersList-food, .ordersList-drinks {
+	flex-basis: 50%;
+	margin: 0 15px;
+}
+
+
+
 .itemBox {
-	flex-basis: 100%;
+	flex: 1 1 50%;
 	margin-top: 20px;
 	padding: 15px;
 	background-color: #FFD2A0;
