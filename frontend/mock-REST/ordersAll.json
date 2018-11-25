@@ -1,0 +1,101 @@
+{
+	"result": [
+		{
+			"table": 3,
+			"created": {
+				"year": 2018,
+				"month": 11,
+				"day": 25,
+				"hours": 12,
+				"minutes": 58
+			},
+			"food": [
+				{
+					"name": "Svíčková",
+					"amount": 2
+				},
+				{
+					"name": "Smažák",
+					"amount": 1
+				}
+			],
+			"drinks": [
+				{
+					"name": "Pivo",
+					"amount": 4
+				}
+			],
+			"state": "new"
+		},
+		{
+			"table": 5,
+			"created": {
+				"year": 2018,
+				"month": 11,
+				"day": 25,
+				"hours": 13,
+				"minutes": 2
+			},
+			"food": [
+				{
+					"name": "Hranolky",
+					"amount": 4
+				},
+				{
+					"name": "Smažák",
+					"amount": 2
+				},
+				{
+					"name": "Pečená kachna",
+					"amount": 1
+				}
+			],
+			"drinks": [
+				{
+					"name": "Pivo",
+					"amount": 4
+				},
+				{
+					"name": "Čaj",
+					"amount": 3
+				}
+			],
+			"state": "new"
+		},
+		{
+			"table": 2,
+			"created": {
+				"year": 2018,
+				"month": 11,
+				"day": 25,
+				"hours": 13,
+				"minutes": 15
+			},
+			"food": [
+				{
+					"name": "Hranolky",
+					"amount": 4
+				},
+				{
+					"name": "Smažák",
+					"amount": 2
+				},
+				{
+					"name": "Pečená kachna",
+					"amount": 1
+				}
+			],
+			"drinks": [
+				{
+					"name": "Pivo",
+					"amount": 4
+				},
+				{
+					"name": "Čaj",
+					"amount": 3
+				}
+			],
+			"state": "new"
+		}
+	]
+}
