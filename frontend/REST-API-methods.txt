@@ -12,6 +12,12 @@ Menu
 	** název položky
 	** cena
 	** příp. informace jestli je ještě dostupná (je pro její přípravu dostatek surovin), aby se dala v designu třeba zešedivět
+* GET nápoje
+	** vracet podle typu položky
+	** id položky
+	** název položky
+	** cena
+	** příp. informace jestli je ještě dostupná (je pro její přípravu dostatek surovin), aby se dala v designu třeba zešedivět
 
 Objednávky
 * GET všechny objednávky (/api/orders)

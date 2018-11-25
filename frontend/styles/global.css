@@ -95,6 +95,17 @@ a {
 	display: flex;
 }
 
+@media (max-width: 768px) {
+	.orderForm-menu {
+		flex-wrap: wrap;
+	}
+
+	.orderForm-left,
+	.orderForm-right {
+		flex-basis: 100%;
+	}
+}
+
 .orderForm-button {
 	min-width: 150px;
 	margin-top: 20px;

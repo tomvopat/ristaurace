@@ -18,7 +18,7 @@ $.ajax({
 	}
  });
 
- $.ajax({ 
+$.ajax({ 
 	type: "GET",
 	url: "http://www.mocky.io/v2/5bf9a01a3200006e00f2256f",
 	dataType: "jsonp",
@@ -27,4 +27,15 @@ $.ajax({
 			$("#permanent-items").append(createMenuItemHtml(item));
 		});
 	}
- });
+});
+
+$.ajax({ 
+	type: "GET",
+	url: "http://www.mocky.io/v2/5bfa662e3200004b00bee336",
+	dataType: "jsonp",
+	success: function(data){
+		data.result.forEach(item => {
+			$("#drinks").append(createMenuItemHtml(item));
+		});
+	}
+});
