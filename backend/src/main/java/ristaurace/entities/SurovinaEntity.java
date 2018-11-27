@@ -1,6 +1,6 @@
 // Tomáš Vopat - vopattom
 
-package ristaurace.model;
+package ristaurace.entities;
 
 import javax.persistence.*;
 import java.util.Collection;
