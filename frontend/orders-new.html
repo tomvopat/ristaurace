@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>rIStaurace - informační systém pro restaurace</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="styles/reset.css" />
+	<link rel="stylesheet" type="text/css" href="styles/global.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="scripts/global.js"></script>
+</head>
+<body>
+	<nav class="navigation">
+		<div class="navigation-content">
+			<a class="navigation-logoWrapper" href="/">
+				<img class="navigation-logo" src="images/logo.svg">
+			</a>
+			<ul class="navigation-list">
+				<li class="navigation-item">
+					<a class="navigation-link" href="/">Domů</a>
+				</li>
+				<li class="navigation-item">
+					<a class="navigation-link" href="orders-new.html">Nová objednávka</a>
+				</li>
+				<li class="navigation-item">
+					<a class="navigation-link" href="orders-list.html">Výpis objednávek</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<main class="main">
+		<div class="main-content">
+			<h1>Zaznamenání objednávky</h1>
+			<form class="orderForm">
+				<div class="table">
+					<span class="table-label">Stůl číslo</span>
+					<select class="table-select">
+						<option value selected disabled hidden>(Vybrat stůl)</option>
+						<option class="table-option" vlaue=1>1</option>
+						<option class="table-option" vlaue=2>2</option>
+						<option class="table-option" vlaue=3>3</option>
+					</select>
+				</div>
+
+				<div class="orderForm-menu">
+					<div class="orderForm-left">
+						<div class="itemBox">
+							<h3 class="itemBox-heading">Denní nabídka</h3>
+							<ul id="daily-items" class="menuList--daily menuList">
+								<!-- GET from REST API -->
+							</ul>
+						</div>
+						<div class="itemBox">
+							<h3 class="itemBox-heading">Stálá nabídka</h3>
+							<ul id="permanent-items" class="menuList--permanent menuList">
+								<!-- GET from REST API -->
+							</ul>
+						</div>
+					</div>
+					<div class="orderForm-right">
+						<div class="itemBox">
+							<h3 class="itemBox-heading">Nápoje</h3>
+							<ul id="drinks" class="menuList--drinks menuList">
+								<!-- GET from REST API -->
+							</ul>
+						</div>
+					</div>
+				</div>
+				<input class="orderForm-button button" type="submit" value="Odeslat">
+			</form>
+		</div>
+	</main>
+</body>
+</html>

@@ -41,7 +41,7 @@ input, select {
 }
 
 .button:hover {
-	background-color: #432300;
+	background-color: #C55400;
 }
 
 .navigation {
@@ -61,7 +61,8 @@ input, select {
 .navigation-logoWrapper {
 	display: flex;
 	align-items: center;
-	flex-basis: 200px;
+	flex-basis: 60px;
+	margin-right: 20px;
 
 }
 @media (max-width: 768px) {
@@ -73,7 +74,6 @@ input, select {
 .navigation-logo {
 	width: 100%;
 	height: auto;
-	margin-right: 20px;
 }
 
 .navigation-item {
@@ -84,13 +84,13 @@ input, select {
 .navigation-link {
 	margin-left: 10px;
 	padding: 12px 20px;
-	transition: .2s ease-in background-color;
+	transition: .2s ease-in color;
 	color: #fff;
 	font-weight: bold;
 	border-radius: 2px;
 }
 .navigation-link:hover {
-	background-color: #FF8500;
+	color: #FF8500;
 }
 
 .main {
