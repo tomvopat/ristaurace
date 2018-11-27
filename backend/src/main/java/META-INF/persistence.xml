@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="NewPersistenceUnit">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>ristaurace.model.AlergenEntity</class>
+        <class>ristaurace.model.DodavatelEntity</class>
+        <class>ristaurace.model.MenuEntity</class>
+        <class>ristaurace.model.MnozstviEntity</class>
+        <class>ristaurace.model.ObjednaneZboziEntity</class>
+        <class>ristaurace.model.ObjednavkaEntity</class>
+        <class>ristaurace.model.PolozkaMenuEntity</class>
+        <class>ristaurace.model.PopularitaEntity</class>
+        <class>ristaurace.model.RPolozkaMenuMenuEntity</class>
+        <class>ristaurace.model.RPolozkaMenuTypEntity</class>
+        <class>ristaurace.model.RStulRezervaceEntity</class>
+        <class>ristaurace.model.RSurovinaAlergenEntity</class>
+        <class>ristaurace.model.RUcetStulEntity</class>
+        <class>ristaurace.model.RezervaceEntity</class>
+        <class>ristaurace.model.StavPolozkyEntity</class>
+        <class>ristaurace.model.StulEntity</class>
+        <class>ristaurace.model.SurovinaEntity</class>
+        <class>ristaurace.model.TypEntity</class>
+        <class>ristaurace.model.UcetEntity</class>
+        <class>ristaurace.model.ZasobaEntity</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/ristaurace"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connection.username" value=""/>
+            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>
