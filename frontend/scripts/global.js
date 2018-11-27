@@ -1,3 +1,21 @@
+let timer = function() {
+	setInterval("increaseTimer()", 1000);
+}
+
+let increaseTimer = function() {
+	$(".ordersList-item").each(function() {
+		let $counter = $(this).find(".ordersList-timer");
+		let minutes = $counter.text().split(":")[0];
+		let seconds = $counter.text().split(":")[1];
+		seconds++;
+		if(seconds >= 60) {
+			seconds = 0;
+			minutes++;
+		}
+		$counter.html(minutes + ":" + seconds);
+	});
+}
+
 let createMenuItemHtml = function(item) {
 	let menuItemHtml =
 		'<li class=\"menuList-item\">'
@@ -94,11 +112,15 @@ $.ajax({
 
 $.ajax({ 
 	type: "GET",
-	url: "http://www.mocky.io/v2/5bfa90283200006000bee35a",
+	url: "http://www.mocky.io/v2/5bfd515331000075002cf881",
 	dataType: "jsonp",
 	success: function(data){
 		data.result.forEach(item => {
 			$("#ordersList").append(createOrderItemHtml(item));
 		});
 	}
+});
+
+$(document).ready(function() {
+	timer();
 });
