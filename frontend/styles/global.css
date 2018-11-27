@@ -1,6 +1,7 @@
 body {
 	font-family: Arial;
 	background-color: #fff;
+	line-height: 1.4;
 }
 body, a {
 	color: #432300;
@@ -16,6 +17,10 @@ body, a {
 
 a {
 	text-decoration: none;
+}
+
+p {
+	font-size: 18px;
 }
 
 input, select {
@@ -131,6 +136,11 @@ input, select {
 	flex-basis: 200px;
 	margin: 0;
 }
+
+.menuList-price {
+	font-size: .8em;
+}
+
 .menuList-input {
 	text-align: center;
 }
