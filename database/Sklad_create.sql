@@ -61,9 +61,9 @@ DECLARE
 BEGIN 
 SELECT COUNT(*) INTO C 
 FROM USER_TRIGGERS 
-  WHERE TRIGGER_NAME = 'TRG_Objednane_zbozi_Objednane_zboziID'; 
+  WHERE TRIGGER_NAME = 'TRG_Objednane_zboziID'; 
   IF (C > 0) THEN 
-    EXECUTE IMMEDIATE 'DROP TRIGGER "TRG_Objednane_zbozi_Objednane_zboziID"'; 
+    EXECUTE IMMEDIATE 'DROP TRIGGER "TRG_Objednane_zboziID"'; 
 END IF; 
 END;
 /
@@ -73,9 +73,9 @@ DECLARE
 BEGIN 
 SELECT COUNT(*) INTO C 
 FROM USER_SEQUENCES 
-  WHERE SEQUENCE_NAME = 'SEQ_Objednane_zbozi_Objednane_zboziID'; 
+  WHERE SEQUENCE_NAME = 'SEQ_Objednane_zboziID'; 
   IF (C > 0) THEN 
-    EXECUTE IMMEDIATE 'DROP SEQUENCE "SEQ_Objednane_zbozi_Objednane_zboziID"'; 
+    EXECUTE IMMEDIATE 'DROP SEQUENCE "SEQ_Objednane_zboziID"'; 
 END IF; 
 END;
 /
@@ -383,7 +383,7 @@ COMMENT ON TABLE  "Objednane_zbozi" IS 'Kazda objednavka obsahuje nejake OBJEDNA
 ;
 
 
-CREATE SEQUENCE "SEQ_Objednane_zbozi_Objednane_zboziID" 
+CREATE SEQUENCE "SEQ_Objednane_zboziID" 
 	INCREMENT BY 1 
 	START WITH 1 
 	NOMAXVALUE 
@@ -394,12 +394,12 @@ CREATE SEQUENCE "SEQ_Objednane_zbozi_Objednane_zboziID"
 ;
 
 
-CREATE OR REPLACE TRIGGER "TRG_Objednane_zbozi_Objednane_zboziID" 
+CREATE OR REPLACE TRIGGER "TRG_Objednane_zboziID" 
 	BEFORE INSERT 
 	ON "Objednane_zbozi" 
 	FOR EACH ROW 
 	BEGIN 
-		SELECT "SEQ_Objednane_zbozi_Objednane_zboziID".NEXTVAL 
+		SELECT "SEQ_Objednane_zboziID".NEXTVAL 
 		INTO :NEW."Objednane_zboziID" 
 		FROM DUAL; 
 	END;
@@ -573,7 +573,7 @@ ALTER TABLE  "Zasoba"
 /* Create Foreign Key Constraints */
 
 ALTER TABLE  "Mnozstvi" 
- ADD CONSTRAINT "FK_MNOZSTVI_je_potreba_mnozstvi"
+ ADD CONSTRAINT "FK_MNOZSTVI"
 	FOREIGN KEY ("SurovinaID") REFERENCES  "Surovina" ("SurovinaID")
 ;
 
@@ -588,7 +588,7 @@ ALTER TABLE  "Objednane_zbozi"
 ;
 
 ALTER TABLE  "Objednane_zbozi" 
- ADD CONSTRAINT "FK_OBJEDNANE_ZBOZI_je_objednana"
+ ADD CONSTRAINT "FK_OBJEDNANE_ZBOZI"
 	FOREIGN KEY ("SurovinaID") REFERENCES  "Surovina" ("SurovinaID")
 ;
 
