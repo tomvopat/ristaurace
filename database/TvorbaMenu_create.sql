@@ -36,9 +36,9 @@ DECLARE
 BEGIN 
 SELECT COUNT(*) INTO C 
 FROM USER_TRIGGERS 
-  WHERE TRIGGER_NAME = 'TRG_Polozka_menu_Polozka_menuID'; 
+  WHERE TRIGGER_NAME = 'TRG_Polozka_menuID'; 
   IF (C > 0) THEN 
-    EXECUTE IMMEDIATE 'DROP TRIGGER "TRG_Polozka_menu_Polozka_menuID"'; 
+    EXECUTE IMMEDIATE 'DROP TRIGGER "TRG_Polozka_menuID"'; 
 END IF; 
 END;
 /
@@ -48,9 +48,9 @@ DECLARE
 BEGIN 
 SELECT COUNT(*) INTO C 
 FROM USER_SEQUENCES 
-  WHERE SEQUENCE_NAME = 'SEQ_Polozka_menu_Polozka_menuID'; 
+  WHERE SEQUENCE_NAME = 'SEQ_Polozka_menuID'; 
   IF (C > 0) THEN 
-    EXECUTE IMMEDIATE 'DROP SEQUENCE "SEQ_Polozka_menu_Polozka_menuID"'; 
+    EXECUTE IMMEDIATE 'DROP SEQUENCE "SEQ_Polozka_menuID"'; 
 END IF; 
 END;
 /
@@ -283,7 +283,7 @@ COMMENT ON TABLE  "Polozka_menu" IS 'Polozka menu je konkretni polozka, kterou s
 ;
 
 
-CREATE SEQUENCE "SEQ_Polozka_menu_Polozka_menuID" 
+CREATE SEQUENCE "SEQ_Polozka_menuID" 
 	INCREMENT BY 1 
 	START WITH 1 
 	NOMAXVALUE 
@@ -294,12 +294,12 @@ CREATE SEQUENCE "SEQ_Polozka_menu_Polozka_menuID"
 ;
 
 
-CREATE OR REPLACE TRIGGER "TRG_Polozka_menu_Polozka_menuID" 
+CREATE OR REPLACE TRIGGER "TRG_Polozka_menuID" 
 	BEFORE INSERT 
 	ON "Polozka_menu" 
 	FOR EACH ROW 
 	BEGIN 
-		SELECT "SEQ_Polozka_menu_Polozka_menuID".NEXTVAL 
+		SELECT "SEQ_Polozka_menuID".NEXTVAL 
 		INTO :NEW."Polozka_menuID" 
 		FROM DUAL; 
 	END;
