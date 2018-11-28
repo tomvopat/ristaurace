@@ -86,9 +86,9 @@ DECLARE
 BEGIN 
 SELECT COUNT(*) INTO C 
 FROM USER_TRIGGERS 
-  WHERE TRIGGER_NAME = 'TRG_Stav_polozky_Stav_polozkyID'; 
+  WHERE TRIGGER_NAME = 'TRG_Stav_polozkyID'; 
   IF (C > 0) THEN 
-    EXECUTE IMMEDIATE 'DROP TRIGGER "TRG_Stav_polozky_Stav_polozkyID"'; 
+    EXECUTE IMMEDIATE 'DROP TRIGGER "TRG_Stav_polozkyID"'; 
 END IF; 
 END;
 /
@@ -98,9 +98,9 @@ DECLARE
 BEGIN 
 SELECT COUNT(*) INTO C 
 FROM USER_SEQUENCES 
-  WHERE SEQUENCE_NAME = 'SEQ_Stav_polozky_Stav_polozkyID'; 
+  WHERE SEQUENCE_NAME = 'SEQ_Stav_polozkyID'; 
   IF (C > 0) THEN 
-    EXECUTE IMMEDIATE 'DROP SEQUENCE "SEQ_Stav_polozky_Stav_polozkyID"'; 
+    EXECUTE IMMEDIATE 'DROP SEQUENCE "SEQ_Stav_polozkyID"'; 
 END IF; 
 END;
 /
@@ -338,7 +338,7 @@ COMMENT ON TABLE  "Stav_polozky" IS 'Pri pridavani polozky z menu na ucet je pot
 ;
 
 
-CREATE SEQUENCE "SEQ_Stav_polozky_Stav_polozkyID" 
+CREATE SEQUENCE "SEQ_Stav_polozkyID" 
 	INCREMENT BY 1 
 	START WITH 1 
 	NOMAXVALUE 
@@ -349,12 +349,12 @@ CREATE SEQUENCE "SEQ_Stav_polozky_Stav_polozkyID"
 ;
 
 
-CREATE OR REPLACE TRIGGER "TRG_Stav_polozky_Stav_polozkyID" 
+CREATE OR REPLACE TRIGGER "TRG_Stav_polozkyID" 
 	BEFORE INSERT 
 	ON "Stav_polozky" 
 	FOR EACH ROW 
 	BEGIN 
-		SELECT "SEQ_Stav_polozky_Stav_polozkyID".NEXTVAL 
+		SELECT "SEQ_Stav_polozkyID".NEXTVAL 
 		INTO :NEW."Stav_polozkyID" 
 		FROM DUAL; 
 	END;
