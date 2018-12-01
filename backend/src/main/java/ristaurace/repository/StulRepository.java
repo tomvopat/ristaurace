@@ -2,5 +2,11 @@
 
 package ristaurace.repository;
 
-public interface StulRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import ristaurace.entities.StulEntity;
+
+import java.util.List;
+
+public interface StulRepository extends JpaRepository<StulEntity, Long> {
+    List<StulEntity> findAll();
 }
