@@ -631,7 +631,7 @@ CREATE TABLE  "Rezervace"
 CREATE TABLE  "Stav_polozky"
 (
 	"Cas_vytvoreni" DATE NOT NULL,
-	"Stav" VARCHAR(10) NULL,
+	"Stav" VARCHAR(20) NULL,
 	"Stav_polozkyID" NUMBER(32) NOT NULL,
 	"Polozka_menuID" NUMBER(32) NULL,
 	"UcetID" NUMBER(32) NULL
