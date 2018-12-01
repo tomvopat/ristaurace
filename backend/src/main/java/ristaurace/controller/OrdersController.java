@@ -5,6 +5,7 @@ package ristaurace.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ristaurace.entities.StavPolozkyEntity;
+import ristaurace.helpObjects.StavEnum;
 import ristaurace.repository.StavPolozkyRepository;
 
 import java.time.LocalDate;
@@ -52,14 +53,27 @@ public class OrdersController {
         return "Pending orders.";
     }
 
+    public StavPolozkyEntity setOrderAs(Integer orderId, StavEnum stav) {
+        Optional<StavPolozkyEntity> stavPolozkyOptional = stavPolozkyRepository.findById(orderId);
+        if(!stavPolozkyOptional.isPresent()) return null;
+        StavPolozkyEntity stavPolozky = stavPolozkyOptional.get();
+        stavPolozky.setStav(stav);
+        return stavPolozkyRepository.saveAndFlush(stavPolozky);
+    }
+
+    @PostMapping(path="/setOpened/{id}")
+    public @ResponseBody StavPolozkyEntity setOrderOpened(@PathVariable Integer id) {
+        return setOrderAs(id, StavEnum.otevreny);
+    }
+
     @PostMapping(path="/setReady/{id}")
-    public @ResponseBody String setOrderReady(@PathVariable long id) {
-        return "Order set as ready";
+    public @ResponseBody StavPolozkyEntity setOrderReady(@PathVariable Integer id) {
+        return setOrderAs(id, StavEnum.pripraveny);
     }
 
     @PostMapping(path="/setDone/{id}")
-    public @ResponseBody String setOrderDone(@PathVariable long id) {
-        return "Order se as done";
+    public @ResponseBody StavPolozkyEntity setOrderDone(@PathVariable Integer id) {
+        return setOrderAs(id, StavEnum.zavreny);
     }
 
 }

@@ -3,6 +3,7 @@
 package ristaurace.entities;
 
 import ristaurace.helpObjects.StavEnum;
+import ristaurace.helpObjects.StavEnumConverter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -28,7 +29,7 @@ public class StavPolozkyEntity {
         this.id = id;
     }
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = StavEnumConverter.class)
     @Column(name = "stav", insertable = false)
     public StavEnum getStav() {
         return stav;

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ristaurace.entities.StulUcetEntity;
 import ristaurace.entities.UcetEntity;
+import ristaurace.helpObjects.StavEnum;
 import ristaurace.repository.StulUcetRepository;
 import ristaurace.repository.UcetRepository;
 
@@ -62,7 +63,7 @@ public class BillController {
         //TODO
         List<StulUcetEntity> help = new ArrayList<>();
         for (StulUcetEntity u : stulUcetList) {
-            if(u.getStav() == StulUcetEntity.StavEnum.otevreny) {
+            if(u.getStav() == StavEnum.otevreny) {
                 help.add(u);
             }
         }
