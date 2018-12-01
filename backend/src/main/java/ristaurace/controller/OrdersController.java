@@ -4,21 +4,42 @@ package ristaurace.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import ristaurace.entities.StavPolozkyEntity;
+import ristaurace.repository.StavPolozkyRepository;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(path="/order")
 public class OrdersController {
 
-    @GetMapping(path="/all")
-    public @ResponseBody String getAllOrders() {
-        return "All orders";
+    private StavPolozkyRepository stavPolozkyRepository;
+
+    public OrdersController(StavPolozkyRepository stavPolozkyRepository) {
+        this.stavPolozkyRepository = stavPolozkyRepository;
     }
 
+    /**
+     * Vrátí všechny objednané položky
+     * @return
+     */
+    @GetMapping(path="/all")
+    public @ResponseBody List<StavPolozkyEntity> getAllOrders() {
+        return stavPolozkyRepository.findAll();
+    }
+
+    /**
+     * Vrátí objednanou položku se zadaným id
+     * @param id
+     * @return
+     */
     @GetMapping(path="/id/{id}")
-    public @ResponseBody String getOrder(@PathVariable long id) {
-        return "Exact order - by id";
+    public @ResponseBody StavPolozkyEntity getOrder(@PathVariable Integer id) {
+        Optional<StavPolozkyEntity> stavPolozky =  stavPolozkyRepository.findById(id);
+        if(!stavPolozky.isPresent()) return null;
+        return stavPolozky.get();
     }
 
     @GetMapping(path="/date/{date}")

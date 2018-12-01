@@ -2,6 +2,8 @@
 
 package ristaurace.entities;
 
+import ristaurace.helpObjects.StavEnum;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -10,7 +12,7 @@ import java.util.Objects;
 @Table(name = "stav_polozky", schema = "public", catalog = "ristaurace")
 public class StavPolozkyEntity {
     private int id;
-    private String stav;
+    private StavEnum stav;
     private Timestamp casVytvoreni;
     private UcetEntity ucetByIdUcet;
     private PolozkaMenuEntity polozkaMenuByIdPolozkaMenu;
@@ -26,13 +28,13 @@ public class StavPolozkyEntity {
         this.id = id;
     }
 
-    @Basic
+    @Enumerated(EnumType.STRING)
     @Column(name = "stav", insertable = false)
-    public String getStav() {
+    public StavEnum getStav() {
         return stav;
     }
 
-    public void setStav(String stav) {
+    public void setStav(StavEnum stav) {
         this.stav = stav;
     }
 

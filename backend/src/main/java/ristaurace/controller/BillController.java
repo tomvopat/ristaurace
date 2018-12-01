@@ -25,11 +25,20 @@ public class BillController {
         this.stulUcetRepository = stulUcetRepository;
     }
 
+    /**
+     * Vrátí všechny účty
+     * @return
+     */
     @GetMapping(path = "/all")
     public @ResponseBody List<UcetEntity> getAll() {
         return ucetRepository.findAll();
     }
 
+    /**
+     * Vrátí účet podle zadaného id
+     * @param id
+     * @return
+     */
     @GetMapping(path = "/{id}")
     public @ResponseBody UcetEntity getById(@PathVariable Integer id) {
         Optional<UcetEntity> ucetEntity = ucetRepository.findById(id);
@@ -41,6 +50,10 @@ public class BillController {
         }
     }
 
+    /**
+     * Vrátí všechny otevřené účty
+     * @return
+     */
     @GetMapping(path = "/opened")
     public @ResponseBody List<StulUcetEntity> getAllOpened() {
 

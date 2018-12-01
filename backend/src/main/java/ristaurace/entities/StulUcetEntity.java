@@ -2,19 +2,14 @@
 
 package ristaurace.entities;
 
+import ristaurace.helpObjects.StavEnum;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "stul_ucet", schema = "public", catalog = "ristaurace")
 public class StulUcetEntity {
-
-    public enum StavEnum {
-        otevreny,
-        zavreny;
-
-
-    }
 
     private int id;
     private StulEntity stulByIdStul;

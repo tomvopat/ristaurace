@@ -21,6 +21,10 @@ public class TypeController {
         this.typRepository = typRepository;
     }
 
+    /**
+     * Vrátí všechny dostupné typy jídel
+     * @return
+     */
     @GetMapping(path = "/all")
     public @ResponseBody List<TypEntity> getAll() {
         return typRepository.findAll();

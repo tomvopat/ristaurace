@@ -21,9 +21,12 @@ public class TablesController {
         this.repository = repository;
     }
 
+    /**
+     * Vrátí všechny stoly v restauraci
+     * @return
+     */
     @GetMapping(path="/all")
-    public @ResponseBody
-    List<StulEntity> getTables() {
+    public @ResponseBody List<StulEntity> getTables() {
         return repository.findAll();
     }
 }
