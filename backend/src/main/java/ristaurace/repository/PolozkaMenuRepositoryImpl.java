@@ -24,7 +24,7 @@ public class PolozkaMenuRepositoryImpl implements PolozkaMenuRepositoryCustom {
     EntityManager entityManager;
 
     @Override
-    public List<TypPolozkaMenuEntity> findAllByCategory(Long category_id) {
+    public List<TypPolozkaMenuEntity> findAllByCategory(Integer category_id) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 
         CriteriaQuery<TypPolozkaMenuEntity> cq = cb.createQuery(TypPolozkaMenuEntity.class);

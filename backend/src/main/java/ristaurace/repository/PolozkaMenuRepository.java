@@ -7,11 +7,12 @@ import ristaurace.entities.PolozkaMenuEntity;
 import ristaurace.entities.TypPolozkaMenuEntity;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface PolozkaMenuRepository extends JpaRepository<PolozkaMenuEntity, Long>, PolozkaMenuRepositoryCustom {
+public interface PolozkaMenuRepository extends JpaRepository<PolozkaMenuEntity, Integer>, PolozkaMenuRepositoryCustom {
     @Override
-    List<PolozkaMenuEntity> findAllById(Iterable<Long> iterable);
+    Optional<PolozkaMenuEntity> findById(Integer integer);
 
     @Override
-    List<TypPolozkaMenuEntity> findAllByCategory(Long category_id);
+    List<TypPolozkaMenuEntity> findAllByCategory(Integer category_id);
 }

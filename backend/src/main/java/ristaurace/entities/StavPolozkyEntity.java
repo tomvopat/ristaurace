@@ -16,6 +16,7 @@ public class StavPolozkyEntity {
     private PolozkaMenuEntity polozkaMenuByIdPolozkaMenu;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public int getId() {
         return id;
@@ -26,7 +27,7 @@ public class StavPolozkyEntity {
     }
 
     @Basic
-    @Column(name = "stav")
+    @Column(name = "stav", insertable = false)
     public String getStav() {
         return stav;
     }
@@ -36,7 +37,7 @@ public class StavPolozkyEntity {
     }
 
     @Basic
-    @Column(name = "cas_vytvoreni")
+    @Column(name = "cas_vytvoreni", insertable = false)
     public Timestamp getCasVytvoreni() {
         return casVytvoreni;
     }

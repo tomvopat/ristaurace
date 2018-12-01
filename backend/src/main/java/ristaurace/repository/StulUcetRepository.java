@@ -7,7 +7,7 @@ import ristaurace.entities.StulUcetEntity;
 
 import java.util.List;
 
-public interface StulUcetRepository extends JpaRepository<StulUcetEntity, Long>, StulUcetRepositoryCustom {
+public interface StulUcetRepository extends JpaRepository<StulUcetEntity, Integer>, StulUcetRepositoryCustom {
     @Override
     List<StulUcetEntity> findAllOpened();
 

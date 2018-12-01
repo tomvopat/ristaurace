@@ -7,6 +7,6 @@ import ristaurace.entities.StulEntity;
 
 import java.util.List;
 
-public interface StulRepository extends JpaRepository<StulEntity, Long> {
+public interface StulRepository extends JpaRepository<StulEntity, Integer> {
     List<StulEntity> findAll();
 }

@@ -31,7 +31,7 @@ public class BillController {
     }
 
     @GetMapping(path = "/{id}")
-    public @ResponseBody UcetEntity getById(@PathVariable Long id) {
+    public @ResponseBody UcetEntity getById(@PathVariable Integer id) {
         Optional<UcetEntity> ucetEntity = ucetRepository.findById(id);
         if(ucetEntity.isPresent()) {
             return ucetEntity.get();

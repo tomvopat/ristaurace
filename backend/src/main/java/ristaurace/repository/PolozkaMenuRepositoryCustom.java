@@ -8,5 +8,5 @@ import ristaurace.entities.TypPolozkaMenuEntity;
 import java.util.List;
 
 public interface PolozkaMenuRepositoryCustom {
-    List<TypPolozkaMenuEntity> findAllByCategory(Long category_id);
+    List<TypPolozkaMenuEntity> findAllByCategory(Integer category_id);
 }

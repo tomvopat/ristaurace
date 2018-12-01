@@ -7,7 +7,7 @@ import ristaurace.entities.TypEntity;
 
 import java.util.List;
 
-public interface TypRepository extends JpaRepository<TypEntity, Long> {
+public interface TypRepository extends JpaRepository<TypEntity, Integer> {
     @Override
     List<TypEntity> findAll();
 }
