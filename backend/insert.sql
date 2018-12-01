@@ -1,0 +1,78 @@
+INSERT INTO public.polozka_menu (id, nazev, cena) VALUES (1, 'Guláš', 109);
+INSERT INTO public.polozka_menu (id, nazev, cena) VALUES (2, 'Svíčková', 125);
+INSERT INTO public.polozka_menu (id, nazev, cena) VALUES (3, 'Rizoto', 90);
+INSERT INTO public.polozka_menu (id, nazev, cena) VALUES (4, 'Pivo', 21);
+INSERT INTO public.polozka_menu (id, nazev, cena) VALUES (5, 'Voda', 10);
+INSERT INTO public.polozka_menu (id, nazev, cena) VALUES (6, 'Kuřecí vývar', 35);
+INSERT INTO public.polozka_menu (id, nazev, cena) VALUES (7, 'Rajčatová polévka', 40);
+INSERT INTO public.polozka_menu (id, nazev, cena) VALUES (8, 'Hranolky', 10);
+INSERT INTO public.polozka_menu (id, nazev, cena) VALUES (9, 'Brambory', 10);
+INSERT INTO public.polozka_menu (id, nazev, cena) VALUES (10, 'Kečup', 5);
+
+INSERT INTO public.stav_polozky (id, id_ucet, id_polozka_menu, cas_vytvoreni, stav) VALUES (7, 1, 2, '2018-12-01 17:03:58.679711', 'otevreny');
+INSERT INTO public.stav_polozky (id, id_ucet, id_polozka_menu, cas_vytvoreni, stav) VALUES (9, 3, 5, '2018-12-01 17:03:58.679711', 'otevreny');
+INSERT INTO public.stav_polozky (id, id_ucet, id_polozka_menu, cas_vytvoreni, stav) VALUES (6, 1, 2, '2018-12-01 17:03:58.679711', 'pripraveny');
+INSERT INTO public.stav_polozky (id, id_ucet, id_polozka_menu, cas_vytvoreni, stav) VALUES (8, 3, 5, '2018-12-01 17:03:58.679711', 'zavreny');
+
+INSERT INTO public.stul (id, cislo_stolu, pocet_mist) VALUES (1, 1, 4);
+INSERT INTO public.stul (id, cislo_stolu, pocet_mist) VALUES (2, 2, 2);
+INSERT INTO public.stul (id, cislo_stolu, pocet_mist) VALUES (3, 3, 6);
+INSERT INTO public.stul (id, cislo_stolu, pocet_mist) VALUES (4, 4, 4);
+INSERT INTO public.stul (id, cislo_stolu, pocet_mist) VALUES (5, 5, 3);
+
+INSERT INTO public.stul_ucet (id, id_stul, id_ucet, stav) VALUES (1, 1, 1, 'otevreny');
+INSERT INTO public.stul_ucet (id, id_stul, id_ucet, stav) VALUES (2, 2, 2, 'otevreny');
+INSERT INTO public.stul_ucet (id, id_stul, id_ucet, stav) VALUES (5, 1, 4, 'otevreny');
+INSERT INTO public.stul_ucet (id, id_stul, id_ucet, stav) VALUES (7, 1, 6, 'otevreny');
+INSERT INTO public.stul_ucet (id, id_stul, id_ucet, stav) VALUES (9, 1, 8, 'otevreny');
+INSERT INTO public.stul_ucet (id, id_stul, id_ucet, stav) VALUES (11, 1, 10, 'otevreny');
+INSERT INTO public.stul_ucet (id, id_stul, id_ucet, stav) VALUES (13, 1, 12, 'otevreny');
+INSERT INTO public.stul_ucet (id, id_stul, id_ucet, stav) VALUES (15, 1, 14, 'otevreny');
+INSERT INTO public.stul_ucet (id, id_stul, id_ucet, stav) VALUES (17, 1, 16, 'otevreny');
+INSERT INTO public.stul_ucet (id, id_stul, id_ucet, stav) VALUES (19, 1, 18, 'otevreny');
+INSERT INTO public.stul_ucet (id, id_stul, id_ucet, stav) VALUES (21, 1, 20, 'otevreny');
+INSERT INTO public.stul_ucet (id, id_stul, id_ucet, stav) VALUES (24, 3, -42, 'otevreny');
+INSERT INTO public.stul_ucet (id, id_stul, id_ucet, stav) VALUES (25, 3, -41, 'otevreny');
+INSERT INTO public.stul_ucet (id, id_stul, id_ucet, stav) VALUES (26, 3, -40, 'otevreny');
+INSERT INTO public.stul_ucet (id, id_stul, id_ucet, stav) VALUES (27, 3, -39, 'otevreny');
+INSERT INTO public.stul_ucet (id, id_stul, id_ucet, stav) VALUES (28, 3, -38, 'otevreny');
+INSERT INTO public.stul_ucet (id, id_stul, id_ucet, stav) VALUES (29, 3, -37, 'otevreny');
+
+INSERT INTO public.typ (id, nazev) VALUES (1, 'Denní nabídka');
+INSERT INTO public.typ (id, nazev) VALUES (2, 'Nápoje');
+INSERT INTO public.typ (id, nazev) VALUES (3, 'Hlavní chody');
+INSERT INTO public.typ (id, nazev) VALUES (4, 'Polévky');
+INSERT INTO public.typ (id, nazev) VALUES (5, 'Přílohy');
+
+INSERT INTO public.typ_polozka_menu (id, id_typ, id_polozka_menu) VALUES (1, 1, 1);
+INSERT INTO public.typ_polozka_menu (id, id_typ, id_polozka_menu) VALUES (2, 1, 7);
+INSERT INTO public.typ_polozka_menu (id, id_typ, id_polozka_menu) VALUES (3, 2, 4);
+INSERT INTO public.typ_polozka_menu (id, id_typ, id_polozka_menu) VALUES (4, 2, 5);
+INSERT INTO public.typ_polozka_menu (id, id_typ, id_polozka_menu) VALUES (5, 3, 1);
+INSERT INTO public.typ_polozka_menu (id, id_typ, id_polozka_menu) VALUES (6, 3, 2);
+INSERT INTO public.typ_polozka_menu (id, id_typ, id_polozka_menu) VALUES (7, 3, 3);
+INSERT INTO public.typ_polozka_menu (id, id_typ, id_polozka_menu) VALUES (8, 4, 6);
+INSERT INTO public.typ_polozka_menu (id, id_typ, id_polozka_menu) VALUES (9, 4, 7);
+INSERT INTO public.typ_polozka_menu (id, id_typ, id_polozka_menu) VALUES (10, 5, 8);
+INSERT INTO public.typ_polozka_menu (id, id_typ, id_polozka_menu) VALUES (11, 5, 9);
+INSERT INTO public.typ_polozka_menu (id, id_typ, id_polozka_menu) VALUES (12, 5, 10);
+
+INSERT INTO public.ucet (id, datum_vytvoreni, mena, platba_kartou) VALUES (1, '2018-12-01 11:32:16.546749', 'CZK', null);
+INSERT INTO public.ucet (id, datum_vytvoreni, mena, platba_kartou) VALUES (2, '2018-12-01 11:32:35.135740', 'CZK', null);
+INSERT INTO public.ucet (id, datum_vytvoreni, mena, platba_kartou) VALUES (3, '2018-12-01 11:32:35.135740', 'CZK', null);
+INSERT INTO public.ucet (id, datum_vytvoreni, mena, platba_kartou) VALUES (5, '2018-12-01 18:10:22.201101', 'CZK', null);
+INSERT INTO public.ucet (id, datum_vytvoreni, mena, platba_kartou) VALUES (4, '2018-12-01 19:15:06.347035', 'CZK', null);
+INSERT INTO public.ucet (id, datum_vytvoreni, mena, platba_kartou) VALUES (6, '2018-12-01 19:15:11.625161', 'CZK', null);
+INSERT INTO public.ucet (id, datum_vytvoreni, mena, platba_kartou) VALUES (8, '2018-12-01 19:15:13.260027', 'CZK', null);
+INSERT INTO public.ucet (id, datum_vytvoreni, mena, platba_kartou) VALUES (10, '2018-12-01 19:15:14.869293', 'CZK', null);
+INSERT INTO public.ucet (id, datum_vytvoreni, mena, platba_kartou) VALUES (12, '2018-12-01 19:15:15.755057', 'CZK', null);
+INSERT INTO public.ucet (id, datum_vytvoreni, mena, platba_kartou) VALUES (14, '2018-12-01 19:15:16.556743', 'CZK', null);
+INSERT INTO public.ucet (id, datum_vytvoreni, mena, platba_kartou) VALUES (16, '2018-12-01 19:15:17.273321', 'CZK', null);
+INSERT INTO public.ucet (id, datum_vytvoreni, mena, platba_kartou) VALUES (18, '2018-12-01 19:15:17.974400', 'CZK', null);
+INSERT INTO public.ucet (id, datum_vytvoreni, mena, platba_kartou) VALUES (20, '2018-12-01 19:15:24.466821', 'CZK', null);
+INSERT INTO public.ucet (id, datum_vytvoreni, mena, platba_kartou) VALUES (-42, '2018-12-01 19:24:02.353825', 'CZK', null);
+INSERT INTO public.ucet (id, datum_vytvoreni, mena, platba_kartou) VALUES (-41, '2018-12-01 19:24:05.139806', 'CZK', null);
+INSERT INTO public.ucet (id, datum_vytvoreni, mena, platba_kartou) VALUES (-40, '2018-12-01 19:24:06.589288', 'CZK', null);
+INSERT INTO public.ucet (id, datum_vytvoreni, mena, platba_kartou) VALUES (-39, '2018-12-01 19:24:07.571154', 'CZK', null);
+INSERT INTO public.ucet (id, datum_vytvoreni, mena, platba_kartou) VALUES (-38, '2018-12-01 19:24:08.447568', 'CZK', null);
+INSERT INTO public.ucet (id, datum_vytvoreni, mena, platba_kartou) VALUES (-37, '2018-12-01 19:24:09.205946', 'CZK', null);
