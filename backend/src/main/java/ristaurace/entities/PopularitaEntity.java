@@ -15,6 +15,7 @@ public class PopularitaEntity {
     private PolozkaMenuEntity polozkaMenuByIdPolozkaMenu;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     public int getId() {
         return id;

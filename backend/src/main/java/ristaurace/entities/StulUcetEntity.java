@@ -22,6 +22,7 @@ public class StulUcetEntity {
     private StavEnum stavEnum;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     public int getId() {
         return id;

@@ -17,6 +17,7 @@ public class UcetEntity {
     private Boolean sleva;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     public int getId() {
         return id;

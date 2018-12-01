@@ -13,6 +13,7 @@ public class MenuPolozkaMenuEntity {
     private PolozkaMenuEntity polozkaMenuByIdPolozkaMenu;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     public int getId() {
         return id;

@@ -14,6 +14,7 @@ public class StulEntity {
     private int pocetMist;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     public int getId() {
         return id;

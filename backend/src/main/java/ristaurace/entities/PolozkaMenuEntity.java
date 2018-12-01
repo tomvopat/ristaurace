@@ -14,6 +14,7 @@ public class PolozkaMenuEntity {
     private float cena;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     public int getId() {
         return id;

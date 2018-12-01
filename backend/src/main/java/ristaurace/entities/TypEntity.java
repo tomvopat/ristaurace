@@ -13,6 +13,7 @@ public class TypEntity {
     private String nazev;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     public int getId() {
         return id;
