@@ -12,7 +12,6 @@ public class StulEntity {
     private int id;
     private int cisloStolu;
     private int pocetMist;
-    private Collection<StulUcetEntity> stulUcetsById;
 
     @Id
     @Column(name = "id")
@@ -57,14 +56,5 @@ public class StulEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, cisloStolu, pocetMist);
-    }
-
-    @OneToMany(mappedBy = "stulByIdStul")
-    public Collection<StulUcetEntity> getStulUcetsById() {
-        return stulUcetsById;
-    }
-
-    public void setStulUcetsById(Collection<StulUcetEntity> stulUcetsById) {
-        this.stulUcetsById = stulUcetsById;
     }
 }

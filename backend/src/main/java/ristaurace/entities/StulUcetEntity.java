@@ -8,9 +8,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "stul_ucet", schema = "public", catalog = "ristaurace")
 public class StulUcetEntity {
+
+    public enum StavEnum {
+        otevreny,
+        zavreny;
+
+
+    }
+
     private int id;
     private StulEntity stulByIdStul;
     private UcetEntity ucetByIdUcet;
+    private StavEnum stavEnum;
 
     @Id
     @Column(name = "id")
@@ -20,6 +29,15 @@ public class StulUcetEntity {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "stav")
+    public StavEnum getStav() {
+        return stavEnum;
+    }
+    public void setStav(StavEnum stav) {
+        this.stavEnum = stav;
     }
 
     @Override

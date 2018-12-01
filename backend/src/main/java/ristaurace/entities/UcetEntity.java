@@ -15,8 +15,6 @@ public class UcetEntity {
     private String mena;
     private Boolean platbaKartou;
     private Boolean sleva;
-    private Collection<StavPolozkyEntity> stavPolozkiesById;
-    private Collection<StulUcetEntity> stulUcetsById;
 
     @Id
     @Column(name = "id")
@@ -85,21 +83,4 @@ public class UcetEntity {
         return Objects.hash(id, datumVytvoreni, mena, platbaKartou, sleva);
     }
 
-    @OneToMany(mappedBy = "ucetByIdUcet")
-    public Collection<StavPolozkyEntity> getStavPolozkiesById() {
-        return stavPolozkiesById;
-    }
-
-    public void setStavPolozkiesById(Collection<StavPolozkyEntity> stavPolozkiesById) {
-        this.stavPolozkiesById = stavPolozkiesById;
-    }
-
-    @OneToMany(mappedBy = "ucetByIdUcet")
-    public Collection<StulUcetEntity> getStulUcetsById() {
-        return stulUcetsById;
-    }
-
-    public void setStulUcetsById(Collection<StulUcetEntity> stulUcetsById) {
-        this.stulUcetsById = stulUcetsById;
-    }
 }
