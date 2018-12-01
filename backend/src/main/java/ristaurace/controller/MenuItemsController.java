@@ -5,11 +5,12 @@ package ristaurace.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ristaurace.entities.PolozkaMenuEntity;
-import ristaurace.entities.StulEntity;
+import ristaurace.entities.TypPolozkaMenuEntity;
 import ristaurace.repository.PolozkaMenuRepository;
 import ristaurace.repository.StulRepository;
 
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping(path="/menu-items")
@@ -36,6 +37,17 @@ public class MenuItemsController {
     @GetMapping(path="/drinks")
     public @ResponseBody String getDrinks() {
         return "Drinks";
+    }
+
+    @GetMapping(path="/category/{category_id}")
+    public @ResponseBody List<PolozkaMenuEntity> getAllByCategory(@PathVariable Long category_id) {
+        List<TypPolozkaMenuEntity> typPolozkaList = polozkaMenuRepository.findAllByCategory(category_id);
+        List<PolozkaMenuEntity> polozkaList = new ArrayList<>();
+        for(TypPolozkaMenuEntity typPolozka : typPolozkaList ) {
+            polozkaList.add(typPolozka.getPolozkaMenuByIdPolozkaMenu());
+        }
+
+        return polozkaList;
     }
 
     @PostMapping(path="/order/{ucet_id}/{item_id}")

@@ -12,10 +12,6 @@ public class PolozkaMenuEntity {
     private int id;
     private String nazev;
     private float cena;
-    private Collection<MenuPolozkaMenuEntity> menuPolozkaMenusById;
-    private Collection<PopularitaEntity> popularitasById;
-    private Collection<StavPolozkyEntity> stavPolozkiesById;
-    private Collection<TypPolozkaMenuEntity> typPolozkaMenusById;
 
     @Id
     @Column(name = "id")
@@ -60,41 +56,5 @@ public class PolozkaMenuEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, nazev, cena);
-    }
-
-    @OneToMany(mappedBy = "polozkaMenuByIdPolozkaMenu")
-    public Collection<MenuPolozkaMenuEntity> getMenuPolozkaMenusById() {
-        return menuPolozkaMenusById;
-    }
-
-    public void setMenuPolozkaMenusById(Collection<MenuPolozkaMenuEntity> menuPolozkaMenusById) {
-        this.menuPolozkaMenusById = menuPolozkaMenusById;
-    }
-
-    @OneToMany(mappedBy = "polozkaMenuByIdPolozkaMenu")
-    public Collection<PopularitaEntity> getPopularitasById() {
-        return popularitasById;
-    }
-
-    public void setPopularitasById(Collection<PopularitaEntity> popularitasById) {
-        this.popularitasById = popularitasById;
-    }
-
-    @OneToMany(mappedBy = "polozkaMenuByIdPolozkaMenu")
-    public Collection<StavPolozkyEntity> getStavPolozkiesById() {
-        return stavPolozkiesById;
-    }
-
-    public void setStavPolozkiesById(Collection<StavPolozkyEntity> stavPolozkiesById) {
-        this.stavPolozkiesById = stavPolozkiesById;
-    }
-
-    @OneToMany(mappedBy = "polozkaMenuByIdPolozkaMenu")
-    public Collection<TypPolozkaMenuEntity> getTypPolozkaMenusById() {
-        return typPolozkaMenusById;
-    }
-
-    public void setTypPolozkaMenusById(Collection<TypPolozkaMenuEntity> typPolozkaMenusById) {
-        this.typPolozkaMenusById = typPolozkaMenusById;
     }
 }

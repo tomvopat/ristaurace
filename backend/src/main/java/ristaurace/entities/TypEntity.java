@@ -11,7 +11,6 @@ import java.util.Objects;
 public class TypEntity {
     private int id;
     private String nazev;
-    private Collection<TypPolozkaMenuEntity> typPolozkaMenusById;
 
     @Id
     @Column(name = "id")
@@ -47,12 +46,4 @@ public class TypEntity {
         return Objects.hash(id, nazev);
     }
 
-    @OneToMany(mappedBy = "typByIdTyp")
-    public Collection<TypPolozkaMenuEntity> getTypPolozkaMenusById() {
-        return typPolozkaMenusById;
-    }
-
-    public void setTypPolozkaMenusById(Collection<TypPolozkaMenuEntity> typPolozkaMenusById) {
-        this.typPolozkaMenusById = typPolozkaMenusById;
-    }
 }
