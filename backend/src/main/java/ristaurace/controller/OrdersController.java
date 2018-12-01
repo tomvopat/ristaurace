@@ -48,9 +48,31 @@ public class OrdersController {
         return "All orders on date.";
     }
 
+    /**
+     * Vrátí všechny čekající objednávky
+     * @return
+     */
     @GetMapping(path="/pending")
-    public @ResponseBody String getOrdersPending() {
-        return "Pending orders.";
+    public @ResponseBody List<StavPolozkyEntity> getPending() {
+        return stavPolozkyRepository.findAllPending();
+    }
+
+    /**
+     * Vrátí všechny objednávky připravené k výdeji
+     * @return
+     */
+    @GetMapping(path="/ready")
+    public @ResponseBody List<StavPolozkyEntity> getReady() {
+        return stavPolozkyRepository.findAllReady();
+    }
+
+    /**
+     * Vrátí všechny vydané objednávky
+     * @return
+     */
+    @GetMapping(path="/closed")
+    public @ResponseBody List<StavPolozkyEntity> getClosed() {
+        return stavPolozkyRepository.findAllClosed();
     }
 
     public StavPolozkyEntity setOrderAs(Integer orderId, StavEnum stav) {
@@ -61,16 +83,31 @@ public class OrdersController {
         return stavPolozkyRepository.saveAndFlush(stavPolozky);
     }
 
+    /**
+     * Otevře starou objednávku
+     * @param id
+     * @return
+     */
     @PostMapping(path="/setOpened/{id}")
     public @ResponseBody StavPolozkyEntity setOrderOpened(@PathVariable Integer id) {
         return setOrderAs(id, StavEnum.otevreny);
     }
 
+    /**
+     * Nastaví objednávku jako připravenou k výdeji
+     * @param id
+     * @return
+     */
     @PostMapping(path="/setReady/{id}")
     public @ResponseBody StavPolozkyEntity setOrderReady(@PathVariable Integer id) {
         return setOrderAs(id, StavEnum.pripraveny);
     }
 
+    /**
+     * Označí objednávku jako vydanou
+     * @param id
+     * @return
+     */
     @PostMapping(path="/setDone/{id}")
     public @ResponseBody StavPolozkyEntity setOrderDone(@PathVariable Integer id) {
         return setOrderAs(id, StavEnum.zavreny);

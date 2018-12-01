@@ -19,7 +19,8 @@ public class StavPolozkyEntity {
     private PolozkaMenuEntity polozkaMenuByIdPolozkaMenu;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="stavPolozky_gen", sequenceName = "stav_polozky_id_seq", allocationSize=50)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stavPolozky_gen")
     @Column(name = "id")
     public int getId() {
         return id;

@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface StulUcetRepositoryCustom {
     List<StulUcetEntity> findAllOpened();
+
+    List<StulUcetEntity> findAllClosed();
 }

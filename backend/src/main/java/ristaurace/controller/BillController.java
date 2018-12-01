@@ -4,9 +4,11 @@ package ristaurace.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import ristaurace.entities.StulEntity;
 import ristaurace.entities.StulUcetEntity;
 import ristaurace.entities.UcetEntity;
 import ristaurace.helpObjects.StavEnum;
+import ristaurace.repository.StulRepository;
 import ristaurace.repository.StulUcetRepository;
 import ristaurace.repository.UcetRepository;
 
@@ -19,10 +21,12 @@ import java.util.Optional;
 public class BillController {
 
     private final UcetRepository ucetRepository;
+    private final StulRepository stulRepository;
     private final StulUcetRepository stulUcetRepository;
 
-    public BillController(UcetRepository ucetRepository, StulUcetRepository stulUcetRepository) {
+    public BillController(UcetRepository ucetRepository, StulRepository stulRepository, StulUcetRepository stulUcetRepository) {
         this.ucetRepository = ucetRepository;
+        this.stulRepository = stulRepository;
         this.stulUcetRepository = stulUcetRepository;
     }
 
@@ -31,8 +35,8 @@ public class BillController {
      * @return
      */
     @GetMapping(path = "/all")
-    public @ResponseBody List<UcetEntity> getAll() {
-        return ucetRepository.findAll();
+    public @ResponseBody List<StulUcetEntity> getAll() {
+        return stulUcetRepository.findAll();
     }
 
     /**
@@ -57,26 +61,71 @@ public class BillController {
      */
     @GetMapping(path = "/opened")
     public @ResponseBody List<StulUcetEntity> getAllOpened() {
-
-        List<StulUcetEntity> stulUcetList = stulUcetRepository.findAllOpened();
-
-        //TODO
-        List<StulUcetEntity> help = new ArrayList<>();
-        for (StulUcetEntity u : stulUcetList) {
-            if(u.getStav() == StavEnum.otevreny) {
-                help.add(u);
-            }
-        }
-        stulUcetList = help;
-
-        return stulUcetList;
+        return stulUcetRepository.findAllOpened();
     }
 
-//    @PostMapping(path = "/new/{table_id}")
-//    public @ResponseBody
-//    StulUcetEntity createNew(@PathVariable Long table_id) {
-//
-//        UcetEntity ucetEntity = new UcetEntity();
-//
-//    }
+    /**
+     * Vrátí všechny uzavřené účty
+     * @return
+     */
+    @GetMapping(path = "/closed")
+    public @ResponseBody List<StulUcetEntity> getAllClosed() {
+        return stulUcetRepository.findAllClosed();
+    }
+
+    private StulUcetEntity setState(Integer id, StavEnum stav) {
+        if(stav == StavEnum.pripraveny) return null;
+
+        Optional<StulUcetEntity> stulUcetOptional = stulUcetRepository.findById(id);
+        if(!stulUcetOptional.isPresent()) return null;
+
+        StulUcetEntity stulUcet = stulUcetOptional.get();
+        stulUcet.setStav(stav);
+        return stulUcetRepository.saveAndFlush(stulUcet);
+    }
+
+
+    /**
+     * Otevře starý účet
+     * @param bill_id
+     * @return
+     */
+    @PostMapping(path = "/open/{bill_id}")
+    public @ResponseBody StulUcetEntity setBillOpened(@PathVariable Integer bill_id) {
+        return setState(bill_id, StavEnum.otevreny);
+    }
+
+    /**
+     * Uzavře účet
+     * @param bill_id
+     * @param card
+     * @return
+     */
+    @PostMapping(path = "/close/{bill_id}")
+    public @ResponseBody StulUcetEntity setBillClosed(@PathVariable Integer bill_id, @RequestParam Boolean card) {
+        StulUcetEntity stulUcetEntity = setState(bill_id, StavEnum.zavreny);
+        stulUcetEntity.getUcetByIdUcet().setPlatbaKartou(card);
+        return stulUcetRepository.save(stulUcetEntity);
+    }
+
+    /**
+     * Vytvoří nový účet k danému stolu
+     * @param table_id
+     * @return
+     */
+    @PostMapping(path = "/new/{table_id}")
+    public @ResponseBody StulUcetEntity createNew(@PathVariable Integer table_id) {
+
+        Optional<StulEntity> stulEntityOptional = stulRepository.findById(table_id);
+        if(!stulEntityOptional.isPresent()) return null;
+
+
+        UcetEntity ucetEntity = new UcetEntity();
+        ucetRepository.save(ucetEntity);
+
+        StulUcetEntity stulUcetEntity = new StulUcetEntity();
+        stulUcetEntity.setStulByIdStul(stulEntityOptional.get());
+        stulUcetEntity.setUcetByIdUcet(ucetEntity);
+        return stulUcetRepository.saveAndFlush(stulUcetEntity);
+    }
 }

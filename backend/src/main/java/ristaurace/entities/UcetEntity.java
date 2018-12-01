@@ -14,10 +14,10 @@ public class UcetEntity {
     private Timestamp datumVytvoreni;
     private String mena;
     private Boolean platbaKartou;
-    private Boolean sleva;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="ucet_generator", sequenceName = "ucet_id_seq", allocationSize=50)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ucet_generator")
     @Column(name = "id")
     public int getId() {
         return id;
@@ -28,7 +28,7 @@ public class UcetEntity {
     }
 
     @Basic
-    @Column(name = "datum_vytvoreni")
+    @Column(name = "datum_vytvoreni", insertable = false)
     public Timestamp getDatumVytvoreni() {
         return datumVytvoreni;
     }
@@ -38,7 +38,7 @@ public class UcetEntity {
     }
 
     @Basic
-    @Column(name = "mena")
+    @Column(name = "mena", insertable = false)
     public String getMena() {
         return mena;
     }
@@ -48,23 +48,13 @@ public class UcetEntity {
     }
 
     @Basic
-    @Column(name = "platba_kartou")
+    @Column(name = "platba_kartou", insertable = false)
     public Boolean getPlatbaKartou() {
         return platbaKartou;
     }
 
     public void setPlatbaKartou(Boolean platbaKartou) {
         this.platbaKartou = platbaKartou;
-    }
-
-    @Basic
-    @Column(name = "sleva")
-    public Boolean getSleva() {
-        return sleva;
-    }
-
-    public void setSleva(Boolean sleva) {
-        this.sleva = sleva;
     }
 
     @Override
@@ -75,13 +65,12 @@ public class UcetEntity {
         return id == that.id &&
                 Objects.equals(datumVytvoreni, that.datumVytvoreni) &&
                 Objects.equals(mena, that.mena) &&
-                Objects.equals(platbaKartou, that.platbaKartou) &&
-                Objects.equals(sleva, that.sleva);
+                Objects.equals(platbaKartou, that.platbaKartou);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, datumVytvoreni, mena, platbaKartou, sleva);
+        return Objects.hash(id, datumVytvoreni, mena, platbaKartou);
     }
 
 }

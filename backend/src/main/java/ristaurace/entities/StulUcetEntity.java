@@ -17,7 +17,8 @@ public class StulUcetEntity {
     private StavEnum stavEnum;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="stulUcet_gen", sequenceName = "stul_ucet_seq", allocationSize=50)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stulUcet_gen")
     @Column(name = "id")
     public int getId() {
         return id;
@@ -28,7 +29,7 @@ public class StulUcetEntity {
     }
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "stav")
+    @Column(name = "stav", insertable = false)
     public StavEnum getStav() {
         return stavEnum;
     }
