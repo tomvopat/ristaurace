@@ -30,9 +30,7 @@ Objednávky
 		*** název (např. svíčková)
 		*** typ (např. jídlo/nápoj)
 		*** stav (nový/připravený/vyřízený)
-	** datum
-	** čas vytvoření objednávky
-	** čas vyřízení objednávky
+	** datum a čas vytvoření objednávky
 * GET objednávky filtrované podle datumu (/api/orders?date=20-11-2018)
 	** id objednávky
 	** stůl
@@ -59,7 +57,7 @@ Objednávky
 	** datum a čas vytvoření objednávky
 * POST Objednání položky (/api/menu-items/order?item_id=6)
 	** POST bude obsahovat JSON 
-* PUT Označení objednávky jako "připravená" (/api/order/3/ready)
+* PUT Označení všech položek v rámci objednávky jako "připravené" (/api/order/3/ready)
 	** 3 je ID objednávky
-* PUT Označení objednávky jako "vyřízená" (/api/order/3/done)
+* PUT Označení všech položek v rámci objednávky jako "vyřízené" (/api/order/3/done)
 	** 3 je ID objednávky

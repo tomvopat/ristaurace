@@ -12,7 +12,7 @@ let increaseTimer = function() {
 			seconds = 0;
 			minutes++;
 		}
-		$counter.html(minutes + ":" + seconds);
+		$counter.html(minutes + ":" + (seconds + '').padStart(2, '0'));
 	});
 }
 
@@ -37,7 +37,7 @@ let createOrderItemHtml = function(item) {
 		foodItemsHtml = foodItemsHtml
 		+ '<li class="menuList-item">'
 		+	'<span class="ordersList-foodName">' + food.name + '</span>'
-		+	'<span class="ordersList-foodCount">' + food.amount + '</span>'
+		+	'<span class="ordersList-foodCount">' + food.amount + 'x</span>'
 		+ '</li>'
 	});
 
@@ -46,12 +46,12 @@ let createOrderItemHtml = function(item) {
 		drinkItemsHtml = drinkItemsHtml
 		+ '<li class="menuList-item">'
 		+	'<span>' + drink.name + '</span>'
-		+	'<span>' + drink.amount + '</span>'
+		+	'<span>' + drink.amount + 'x</span>'
 		+ '</li>'
 	});
 	
 	let menuItemHtml =
-		'<li class="ordersList-item itemBox">'
+		'<li class="ordersList-item itemBox" data-itemId="' + item.id + '">'
 		+	'<h3 class="itemBox-heading">Stůl č. ' + item.table + '</h3>'
 		+	'<span class="ordersList-timer">' + differenceString + '</span>'
 		+	'<div class="ordersList-content">'
@@ -69,8 +69,8 @@ let createOrderItemHtml = function(item) {
 		+		'</div>'
 		+	'</div>'
 		+	'<div class="itemBox-buttons">'
-		+		'<button class="button">Označit jako připravené</button>'
-		+		'<button class="button">Označit jako vyřízené</button>'
+		+		'<button class="button button-ready">Označit jako připravené</button>'
+		+		'<button class="button button-done">Označit jako vyřízené</button>'
 		+	'</div>'
 		+ '</li>';
 	return menuItemHtml;
@@ -123,4 +123,9 @@ $.ajax({
 
 $(document).ready(function() {
 	timer();
+
+	$("#ordersList").on("click", ".button-ready", function() {
+		let itemId = $(this.closest(".ordersList-item")).attr("data-itemId");
+		// TODO PUT request
+	});
 });
