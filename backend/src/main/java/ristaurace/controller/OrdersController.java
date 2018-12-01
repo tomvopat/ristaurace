@@ -11,13 +11,18 @@ import java.time.LocalDate;
 @RequestMapping(path="/order")
 public class OrdersController {
 
-    @GetMapping(path="/")
+    @GetMapping(path="/all")
     public @ResponseBody String getAllOrders() {
         return "All orders";
     }
 
-    @GetMapping(path="/")
-    public @ResponseBody String getOrdersDate(@RequestParam LocalDate date) {
+    @GetMapping(path="/id/{id}")
+    public @ResponseBody String getOrder(@PathVariable long id) {
+        return "Exact order - by id";
+    }
+
+    @GetMapping(path="/date/{date}")
+    public @ResponseBody String getOrdersDate(@PathVariable LocalDate date) {
         return "All orders on date.";
     }
 
@@ -26,18 +31,13 @@ public class OrdersController {
         return "Pending orders.";
     }
 
-    @GetMapping(path="/")
-    public @ResponseBody String getOrder(@RequestParam long order_id) {
-        return "Exact order - by id";
-    }
-
-    @PostMapping(path="/setReady")
-    public @ResponseBody String setOrderReady(@RequestParam long order_id) {
+    @PostMapping(path="/setReady/{id}")
+    public @ResponseBody String setOrderReady(@PathVariable long id) {
         return "Order set as ready";
     }
 
-    @PostMapping(path="/setDone")
-    public @ResponseBody String setOrderDone(@RequestParam long order_id) {
+    @PostMapping(path="/setDone/{id}")
+    public @ResponseBody String setOrderDone(@PathVariable long id) {
         return "Order se as done";
     }
 

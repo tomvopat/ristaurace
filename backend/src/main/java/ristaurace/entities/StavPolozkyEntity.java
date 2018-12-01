@@ -10,8 +10,6 @@ import java.util.Objects;
 @Table(name = "stav_polozky", schema = "public", catalog = "ristaurace")
 public class StavPolozkyEntity {
     private int id;
-    private int idUcet;
-    private int idPolozkaMenu;
     private String stav;
     private Timestamp casVytvoreni;
     private UcetEntity ucetByIdUcet;
@@ -25,26 +23,6 @@ public class StavPolozkyEntity {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Basic
-    @Column(name = "id_ucet")
-    public int getIdUcet() {
-        return idUcet;
-    }
-
-    public void setIdUcet(int idUcet) {
-        this.idUcet = idUcet;
-    }
-
-    @Basic
-    @Column(name = "id_polozka_menu")
-    public int getIdPolozkaMenu() {
-        return idPolozkaMenu;
-    }
-
-    public void setIdPolozkaMenu(int idPolozkaMenu) {
-        this.idPolozkaMenu = idPolozkaMenu;
     }
 
     @Basic
@@ -73,15 +51,15 @@ public class StavPolozkyEntity {
         if (o == null || getClass() != o.getClass()) return false;
         StavPolozkyEntity that = (StavPolozkyEntity) o;
         return id == that.id &&
-                idUcet == that.idUcet &&
-                idPolozkaMenu == that.idPolozkaMenu &&
+                ucetByIdUcet.getId() == that.ucetByIdUcet.getId() &&
+                polozkaMenuByIdPolozkaMenu.getId() == that.polozkaMenuByIdPolozkaMenu.getId() &&
                 Objects.equals(stav, that.stav) &&
                 Objects.equals(casVytvoreni, that.casVytvoreni);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, idUcet, idPolozkaMenu, stav, casVytvoreni);
+        return Objects.hash(id, ucetByIdUcet.getId(), polozkaMenuByIdPolozkaMenu.getId(), stav, casVytvoreni);
     }
 
     @ManyToOne

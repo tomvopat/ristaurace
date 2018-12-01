@@ -10,7 +10,6 @@ import java.util.Objects;
 @Table(name = "popularita", schema = "public", catalog = "ristaurace")
 public class PopularitaEntity {
     private int id;
-    private int idPolozkaMenu;
     private float hodnota;
     private Timestamp datum;
     private PolozkaMenuEntity polozkaMenuByIdPolozkaMenu;
@@ -23,16 +22,6 @@ public class PopularitaEntity {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Basic
-    @Column(name = "id_polozka_menu")
-    public int getIdPolozkaMenu() {
-        return idPolozkaMenu;
-    }
-
-    public void setIdPolozkaMenu(int idPolozkaMenu) {
-        this.idPolozkaMenu = idPolozkaMenu;
     }
 
     @Basic
@@ -61,14 +50,14 @@ public class PopularitaEntity {
         if (o == null || getClass() != o.getClass()) return false;
         PopularitaEntity that = (PopularitaEntity) o;
         return id == that.id &&
-                idPolozkaMenu == that.idPolozkaMenu &&
+                polozkaMenuByIdPolozkaMenu.getId() == that.polozkaMenuByIdPolozkaMenu.getId() &&
                 Float.compare(that.hodnota, hodnota) == 0 &&
                 Objects.equals(datum, that.datum);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, idPolozkaMenu, hodnota, datum);
+        return Objects.hash(id, polozkaMenuByIdPolozkaMenu.getId(), hodnota, datum);
     }
 
     @ManyToOne

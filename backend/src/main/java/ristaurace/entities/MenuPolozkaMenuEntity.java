@@ -9,8 +9,6 @@ import java.util.Objects;
 @Table(name = "menu_polozka_menu", schema = "public", catalog = "ristaurace")
 public class MenuPolozkaMenuEntity {
     private int id;
-    private int idMenu;
-    private int idPolozkaMenu;
     private MenuEntity menuByIdMenu;
     private PolozkaMenuEntity polozkaMenuByIdPolozkaMenu;
 
@@ -24,39 +22,19 @@ public class MenuPolozkaMenuEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "id_menu")
-    public int getIdMenu() {
-        return idMenu;
-    }
-
-    public void setIdMenu(int idMenu) {
-        this.idMenu = idMenu;
-    }
-
-    @Basic
-    @Column(name = "id_polozka_menu")
-    public int getIdPolozkaMenu() {
-        return idPolozkaMenu;
-    }
-
-    public void setIdPolozkaMenu(int idPolozkaMenu) {
-        this.idPolozkaMenu = idPolozkaMenu;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MenuPolozkaMenuEntity that = (MenuPolozkaMenuEntity) o;
         return id == that.id &&
-                idMenu == that.idMenu &&
-                idPolozkaMenu == that.idPolozkaMenu;
+                menuByIdMenu.getId() == that.menuByIdMenu.getId() &&
+                polozkaMenuByIdPolozkaMenu.getId() == that.polozkaMenuByIdPolozkaMenu.getId();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, idMenu, idPolozkaMenu);
+        return Objects.hash(id, menuByIdMenu.getId(), polozkaMenuByIdPolozkaMenu.getId());
     }
 
     @ManyToOne

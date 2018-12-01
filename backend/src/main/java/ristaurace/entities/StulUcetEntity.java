@@ -9,8 +9,6 @@ import java.util.Objects;
 @Table(name = "stul_ucet", schema = "public", catalog = "ristaurace")
 public class StulUcetEntity {
     private int id;
-    private int idStul;
-    private int idUcet;
     private StulEntity stulByIdStul;
     private UcetEntity ucetByIdUcet;
 
@@ -24,39 +22,19 @@ public class StulUcetEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "id_stul")
-    public int getIdStul() {
-        return idStul;
-    }
-
-    public void setIdStul(int idStul) {
-        this.idStul = idStul;
-    }
-
-    @Basic
-    @Column(name = "id_ucet")
-    public int getIdUcet() {
-        return idUcet;
-    }
-
-    public void setIdUcet(int idUcet) {
-        this.idUcet = idUcet;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StulUcetEntity that = (StulUcetEntity) o;
         return id == that.id &&
-                idStul == that.idStul &&
-                idUcet == that.idUcet;
+                stulByIdStul.getId() == that.stulByIdStul.getId() &&
+                ucetByIdUcet.getId() == that.ucetByIdUcet.getId();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, idStul, idUcet);
+        return Objects.hash(id, stulByIdStul.getId(), ucetByIdUcet.getId());
     }
 
     @ManyToOne

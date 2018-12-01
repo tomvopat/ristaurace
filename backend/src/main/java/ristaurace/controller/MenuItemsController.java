@@ -24,8 +24,8 @@ public class MenuItemsController {
         return "Drinks";
     }
 
-    @PostMapping(path="/order")
-    public @ResponseBody String orderItem(@RequestParam long item_id) {
+    @PostMapping(path="/order/{id}")
+    public @ResponseBody String orderItem(@PathVariable long id) {
         return "Item ordered.";
     }
 }
