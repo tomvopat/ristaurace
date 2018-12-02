@@ -18,41 +18,39 @@ let increaseTimer = function() {
 
 let createMenuItemHtml = function(item) {
 	let menuItemHtml =
-		'<li class=\"menuList-item\">'
-		+	'<label class="menuList-label" for="item-' + item.id + '">' + item.name + ' <span class="menuList-price">(' + item.price + 'Kč)</span></label>'
-		+	'<input class="menuList-input" type=\"number\" value=0 min="0" max="100" name=\"item-' + item.id + '\">'
+		'<li class="menuList-item">'
+		+	'<label class="menuList-label" for="item-' + item.id + '">' + item.nazev + ' <span class="menuList-price">(' + item.cena + 'Kč)</span></label>'
+		+	'<input class="menuList-input" type="number" value=0 min="0" max="100" name="item-' + item.id + '">'
 		+ '</li>';
 	return menuItemHtml;
 }
 
 let createOrderItemHtml = function(item) {
-	let created = item.created;
+	let creationDate = new Date(item.ucetByIdUcet.datumVytvoreni);
 	let currentDate = new Date();
-	let creationDate = new Date(created.year, created.month - 1, created.day, created.hours, created.minutes);
 	let difference = Math.abs(currentDate - creationDate);
 	let differenceString = Math.floor(difference / 60000) + ':' + Math.ceil((difference % 60000) / 1000);
-	
 	let foodItemsHtml = '';
-	item.food.forEach((food) => {
+	/*item.food.forEach((food) => {
 		foodItemsHtml = foodItemsHtml
 		+ '<li class="menuList-item">'
 		+	'<span class="ordersList-foodName">' + food.name + '</span>'
 		+	'<span class="ordersList-foodCount">' + food.amount + 'x</span>'
 		+ '</li>'
-	});
+	});*/
 
 	let drinkItemsHtml = '';
-	item.drinks.forEach((drink) => {
+	/*item.drinks.forEach((drink) => {
 		drinkItemsHtml = drinkItemsHtml
 		+ '<li class="menuList-item">'
 		+	'<span>' + drink.name + '</span>'
 		+	'<span>' + drink.amount + 'x</span>'
 		+ '</li>'
-	});
+	});*/
 	
 	let menuItemHtml =
 		'<li class="ordersList-item itemBox" data-itemId="' + item.id + '">'
-		+	'<h3 class="itemBox-heading">Stůl č. ' + item.table + '</h3>'
+		+	'<h3 class="itemBox-heading">Stůl č. ' + item.stulByIdStul.cisloStolu + '</h3>'
 		+	'<span class="ordersList-timer">' + differenceString + '</span>'
 		+	'<div class="ordersList-content">'
 		+		'<div class="ordersList-food">'
@@ -76,24 +74,40 @@ let createOrderItemHtml = function(item) {
 	return menuItemHtml;
 }
 
+let createTableOptionHtml = function(item) {
+	return '<option class="table-option" value=' + item.id + '>' + item.cisloStolu + '</option>';
+}
+
+let baseUrl = "http://localhost:8080/"
 
 $.ajax({
 	type: "GET",
-	url: "http://www.mocky.io/v2/5bf990203200006200f22560",
-	dataType: "jsonp",
+	url: baseUrl + "tables/all",
+	dataType: "json",
 	success: function(data){
-		data.result.forEach(item => {
-			$("#daily-items").append(createMenuItemHtml(item));
+		data.forEach(item => {
+			$("#tableSelect").append(createTableOptionHtml(item));
 		});
 	}
  });
 
+$.ajax({
+	type: "GET",
+	url: baseUrl + "menu-items/category/1/",
+	dataType: "json",
+	success: function(data){
+		data.forEach(item => {
+			$("#daily-items").append(createMenuItemHtml(item));
+		});
+	}
+});
+
 $.ajax({ 
 	type: "GET",
-	url: "http://www.mocky.io/v2/5bf9a01a3200006e00f2256f",
-	dataType: "jsonp",
+	url: baseUrl + "menu-items/category/3/",
+	dataType: "json",
 	success: function(data){
-		data.result.forEach(item => {
+		data.forEach(item => {
 			$("#permanent-items").append(createMenuItemHtml(item));
 		});
 	}
@@ -101,24 +115,39 @@ $.ajax({
 
 $.ajax({ 
 	type: "GET",
-	url: "http://www.mocky.io/v2/5bfa662e3200004b00bee336",
-	dataType: "jsonp",
+	url: baseUrl + "menu-items/category/2/",
+	dataType: "json",
 	success: function(data){
-		data.result.forEach(item => {
+		data.forEach(item => {
 			$("#drinks").append(createMenuItemHtml(item));
 		});
 	}
 });
 
+
 $.ajax({ 
 	type: "GET",
-	url: "http://www.mocky.io/v2/5bfd515331000075002cf881",
-	dataType: "jsonp",
+	url: baseUrl + "bill/opened",
+	dataType: "json",
 	success: function(data){
-		data.result.forEach(item => {
+		data.forEach(item => {
 			$("#ordersList").append(createOrderItemHtml(item));
 		});
 	}
+});
+
+
+$(document).on('click', '#orderButton', function(event) {
+	event.preventDefault();
+	const tableId = $("#tableSelect").val();
+	$.ajax({ 
+		type: "POST",
+		url: baseUrl + "bill/new/" + tableId,
+		dataType: "json",
+		success: function() {
+			console.log("success");
+		}
+	});
 });
 
 $(document).ready(function() {
