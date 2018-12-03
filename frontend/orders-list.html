@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>rIStaurace - informační systém pro restaurace</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="styles/reset.css" />
+	<link rel="stylesheet" type="text/css" href="styles/global.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="scripts/global.js"></script>
+</head>
+<body>
+	<nav class="navigation">
+		<div class="navigation-content">
+			<a class="navigation-logoWrapper" href="/">
+				<img class="navigation-logo" src="images/logo.svg">
+			</a>
+			<ul class="navigation-list">
+				<li class="navigation-item">
+					<a class="navigation-link" href="/">Domů</a>
+				</li>
+				<li class="navigation-item">
+					<a class="navigation-link" href="orders-new.html">Nová objednávka</a>
+				</li>
+				<li class="navigation-item">
+					<a class="navigation-link" href="orders-list.html">Výpis objednávek</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<main class="main">
+		<div class="main-content">
+			<h1>Výpis objednávek</h1>
+			<ul id="ordersList" class="ordersList">
+				<!-- GET from REST API -->
+			</ul>
+		</div>
+	</main>
+</body>
+</html>
