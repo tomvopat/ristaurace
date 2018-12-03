@@ -37,7 +37,7 @@ let getOrderItemsById = function(id, callback) {
 		success: function(data){
 			data.forEach(item => {
 				if(item.ucetByIdUcet.id == id) {
-					items.push(item.polozkaMenuByIdPolozkaMenu);
+					items.push(item);
 				}
 			});
 			callback(items);
@@ -53,57 +53,57 @@ let createOrderItemHtml = function(item) {
 	let foodItemsHtml = '';
 	let drinkItemsHtml = '';
 	getOrderItemsById(item.ucetByIdUcet.id, function(foodItems) {
-		
+		console.log(foodItems);
 		fetch(baseUrl + 'menu-items/category/2')
 		.then(response => {
 			return response.json();
 		})
 		.then(drinks => {
-				foodItems.forEach((food) => {
-					let isDrink = false;
-					drinks.forEach((drink => {
-						if(food.id === drink.id) {
-							drinkItemsHtml = drinkItemsHtml
-							+ '<li id="drink-' + food.id + '" class="menuList-item">'
-							+	'<span class="ordersList-foodName">' + food.nazev + '</span>'
-							+	'<span class="ordersList-foodPrice"></span>'
-							+ '</li>';
-							isDrink = true;
-						}
-					}));
-					if(!isDrink) {
-						foodItemsHtml = foodItemsHtml
-						+ '<li id="food-' + food.id + '" class="menuList-item">'
-						+	'<span class="ordersList-foodName">' + food.nazev + '</span>'
-						+	'<span class="ordersList-foodPrice"></span>'
+			foodItems.forEach((food) => {
+				let isDrink = false;
+				drinks.forEach((drink => {
+					if(food.polozkaMenuByIdPolozkaMenu.id === drink.id) {
+						drinkItemsHtml = drinkItemsHtml
+						+ '<li id="drink-' + food.polozkaMenuByIdPolozkaMenu.id + '" class="menuList-item">'
+						+	'<span class="ordersList-foodName">' + food.polozkaMenuByIdPolozkaMenu.nazev + '</span>'
+						+	'<span class="ordersList-foodState ' + food.stav + '"></span>'
 						+ '</li>';
+						isDrink = true;
 					}
-				});
-				
-				let menuItemHtml =
-					'<li class="ordersList-item itemBox" data-itemId="' + item.id + '">'
-					+	'<h3 class="itemBox-heading">Stůl č. ' + item.stulByIdStul.cisloStolu + '</h3>'
-					+	'<span class="ordersList-timer">' + differenceString + '</span>'
-					+	'<div class="ordersList-content">'
-					+		'<div class="ordersList-food">'
-					+			'<h4>Pokrmy</h4>'
-					+			'<ul class="menuList">'
-					+				foodItemsHtml
-					+			'</ul>'
-					+		'</div>'
-					+		'<div class="ordersList-drinks">'
-					+			'<h4>Nápoje</h4>'
-					+			'<ul class="menuList">'
-					+				drinkItemsHtml
-					+			'</ul>'
-					+		'</div>'
-					+	'</div>'
-					+	'<div class="itemBox-buttons">'
-					+		'<button class="button button-ready">Označit jako připravené</button>'
-					+		'<button class="button button-done">Označit jako vyřízené</button>'
-					+	'</div>'
+				}));
+				if(!isDrink) {
+					foodItemsHtml = foodItemsHtml
+					+ '<li id="food-' + food.polozkaMenuByIdPolozkaMenu.id + '" class="menuList-item">'
+					+	'<span class="ordersList-foodName">' + food.polozkaMenuByIdPolozkaMenu.nazev + '</span>'
+					+	'<span class="ordersList-foodState ' + food.stav + '"></span>'
 					+ '</li>';
-					$("#ordersList").append(menuItemHtml);
+				}
+			});
+			
+			let menuItemHtml =
+				'<li class="ordersList-item itemBox" data-itemId="' + item.id + '">'
+				+	'<h3 class="itemBox-heading">Stůl č. ' + item.stulByIdStul.cisloStolu + '</h3>'
+				+	'<span class="ordersList-timer">' + differenceString + '</span>'
+				+	'<div class="ordersList-content">'
+				+		'<div class="ordersList-food">'
+				+			'<h4>Pokrmy</h4>'
+				+			'<ul class="menuList">'
+				+				foodItemsHtml
+				+			'</ul>'
+				+		'</div>'
+				+		'<div class="ordersList-drinks">'
+				+			'<h4>Nápoje</h4>'
+				+			'<ul class="menuList">'
+				+				drinkItemsHtml
+				+			'</ul>'
+				+		'</div>'
+				+	'</div>'
+				+	'<div class="itemBox-buttons">'
+				+		'<button class="button button-ready">Označit jako připravené</button>'
+				+		'<button class="button button-done">Označit jako vyřízené</button>'
+				+	'</div>'
+				+ '</li>';
+				$("#ordersList").append(menuItemHtml);
 			});
 	
 	});
