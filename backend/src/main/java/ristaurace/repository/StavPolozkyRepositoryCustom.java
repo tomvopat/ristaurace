@@ -14,4 +14,6 @@ public interface StavPolozkyRepositoryCustom {
 
     List<StavPolozkyEntity> findAllClosed();
 
+    List<StavPolozkyEntity> findAllWithBill(Integer bill_id);
+
 }
