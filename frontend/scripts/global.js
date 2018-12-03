@@ -51,48 +51,61 @@ let createOrderItemHtml = function(item) {
 	let difference = Math.abs(currentDate - creationDate);
 	let differenceString = Math.floor(difference / 60000) + ':' + Math.ceil((difference % 60000) / 1000);
 	let foodItemsHtml = '';
+	let drinkItemsHtml = '';
 	getOrderItemsById(item.ucetByIdUcet.id, function(foodItems) {
-		foodItems.forEach((food) => {
-			foodItemsHtml = foodItemsHtml
-			+ '<li id="food-' + food.id + '" class="menuList-item">'
-			+	'<span class="ordersList-foodName">' + food.nazev + '</span>'
-			+	'<span class="ordersList-foodPrice"></span>'
-			+ '</li>'
-		});
-	
-		let drinkItemsHtml = '';
-		/*item.drinks.forEach((drink) => {
-			drinkItemsHtml = drinkItemsHtml
-			+ '<li class="menuList-item">'
-			+	'<span>' + drink.name + '</span>'
-			+	'<span>' + drink.amount + 'x</span>'
-			+ '</li>'
-		});*/
 		
-		let menuItemHtml =
-			'<li class="ordersList-item itemBox" data-itemId="' + item.id + '">'
-			+	'<h3 class="itemBox-heading">Stůl č. ' + item.stulByIdStul.cisloStolu + '</h3>'
-			+	'<span class="ordersList-timer">' + differenceString + '</span>'
-			+	'<div class="ordersList-content">'
-			+		'<div class="ordersList-food">'
-			+			'<h4>Pokrmy</h4>'
-			+			'<ul class="menuList">'
-			+				foodItemsHtml
-			+			'</ul>'
-			+		'</div>'
-			+		'<div class="ordersList-drinks">'
-			+			'<h4>Nápoje</h4>'
-			+			'<ul class="menuList">'
-			+				drinkItemsHtml
-			+			'</ul>'
-			+		'</div>'
-			+	'</div>'
-			+	'<div class="itemBox-buttons">'
-			+		'<button class="button button-ready">Označit jako připravené</button>'
-			+		'<button class="button button-done">Označit jako vyřízené</button>'
-			+	'</div>'
-			+ '</li>';
-			$("#ordersList").append(menuItemHtml);
+		fetch(baseUrl + 'menu-items/category/2')
+		.then(response => {
+			return response.json();
+		})
+		.then(drinks => {
+				foodItems.forEach((food) => {
+					let isDrink = false;
+					drinks.forEach((drink => {
+						if(food.id === drink.id) {
+							drinkItemsHtml = drinkItemsHtml
+							+ '<li id="drink-' + food.id + '" class="menuList-item">'
+							+	'<span class="ordersList-foodName">' + food.nazev + '</span>'
+							+	'<span class="ordersList-foodPrice"></span>'
+							+ '</li>';
+							isDrink = true;
+						}
+					}));
+					if(!isDrink) {
+						foodItemsHtml = foodItemsHtml
+						+ '<li id="food-' + food.id + '" class="menuList-item">'
+						+	'<span class="ordersList-foodName">' + food.nazev + '</span>'
+						+	'<span class="ordersList-foodPrice"></span>'
+						+ '</li>';
+					}
+				});
+				
+				let menuItemHtml =
+					'<li class="ordersList-item itemBox" data-itemId="' + item.id + '">'
+					+	'<h3 class="itemBox-heading">Stůl č. ' + item.stulByIdStul.cisloStolu + '</h3>'
+					+	'<span class="ordersList-timer">' + differenceString + '</span>'
+					+	'<div class="ordersList-content">'
+					+		'<div class="ordersList-food">'
+					+			'<h4>Pokrmy</h4>'
+					+			'<ul class="menuList">'
+					+				foodItemsHtml
+					+			'</ul>'
+					+		'</div>'
+					+		'<div class="ordersList-drinks">'
+					+			'<h4>Nápoje</h4>'
+					+			'<ul class="menuList">'
+					+				drinkItemsHtml
+					+			'</ul>'
+					+		'</div>'
+					+	'</div>'
+					+	'<div class="itemBox-buttons">'
+					+		'<button class="button button-ready">Označit jako připravené</button>'
+					+		'<button class="button button-done">Označit jako vyřízené</button>'
+					+	'</div>'
+					+ '</li>';
+					$("#ordersList").append(menuItemHtml);
+			});
+	
 	});
 }
 
