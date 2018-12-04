@@ -133,38 +133,25 @@ $.ajax({
 	}
 });
 
-$.ajax({
-	type: "GET",
-	url: baseUrl + "menu-items/category/1/",
-	dataType: "json",
-	success: function(data){
-		data.forEach(item => {
-			$("#daily-items").append(createMenuItemHtml(item));
-		});
-	}
-});
 
-$.ajax({ 
-	type: "GET",
-	url: baseUrl + "menu-items/category/3/",
-	dataType: "json",
-	success: function(data){
-		data.forEach(item => {
-			$("#permanent-items").append(createMenuItemHtml(item));
-		});
-	}
-});
-
-$.ajax({ 
-	type: "GET",
-	url: baseUrl + "menu-items/category/2/",
-	dataType: "json",
-	success: function(data){
-		data.forEach(item => {
-			$("#drinks").append(createMenuItemHtml(item));
-		});
-	}
-});
+for (let index = 1; index <= 5; index++) {
+	$.ajax({ 
+		type: "GET",
+		url: baseUrl + "menu-items/category/" + index,
+		dataType: "json",
+		success: function(data){
+			data.forEach(item => {
+				if(index === 1) {
+					$("#daily-items").append(createMenuItemHtml(item));
+				} else if(index == 2) {
+					$("#drinks").append(createMenuItemHtml(item));
+				} else {
+					$("#permanent-items").append(createMenuItemHtml(item));
+				}
+			});
+		}
+	});
+}
 
 
 $.ajax({ 
