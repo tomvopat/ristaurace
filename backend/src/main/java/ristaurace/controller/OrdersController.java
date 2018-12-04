@@ -113,4 +113,43 @@ public class OrdersController {
         return setOrderAs(id, StavEnum.zavreny);
     }
 
+    public List<StavPolozkyEntity> setAllOrdersWithSomeBillAs(Integer ucet_id, StavEnum stav) {
+        List<StavPolozkyEntity> stavPolozkyEntityList = stavPolozkyRepository.findAllWithBill(ucet_id);
+        for(StavPolozkyEntity stavPolozky : stavPolozkyEntityList) {
+            stavPolozky.setStav(stav);
+        }
+        stavPolozkyRepository.saveAll(stavPolozkyEntityList);
+        return stavPolozkyEntityList;
+    }
+
+    /**
+     * Nastavý všechny položky u daného účtu jako otevřené
+     * @param bill_id
+     * @return
+     */
+    @PostMapping(path="/setAllOpened/bill/{bill_id}")
+    public @ResponseBody List<StavPolozkyEntity> setAllOpened(@PathVariable Integer bill_id) {
+        return setAllOrdersWithSomeBillAs(bill_id, StavEnum.otevreny);
+    }
+
+    /**
+     * Nastaví všechny položky u daného účtu jako připravené
+     * @param bill_id
+     * @return
+     */
+    @PostMapping(path="/setAllReady/bill/{bill_id}")
+    public @ResponseBody List<StavPolozkyEntity> setAllReady(@PathVariable Integer bill_id) {
+        return setAllOrdersWithSomeBillAs(bill_id, StavEnum.pripraveny);
+    }
+
+    /**
+     * Nastaví všechny položky u daného účtu jako zavřené
+     * @param bill_id
+     * @return
+     */
+    @PostMapping(path="/setAllClosed/bill/{bill_id}")
+    public @ResponseBody List<StavPolozkyEntity> setAllClosed(@PathVariable Integer bill_id) {
+        return setAllOrdersWithSomeBillAs(bill_id, StavEnum.zavreny);
+    }
+
 }

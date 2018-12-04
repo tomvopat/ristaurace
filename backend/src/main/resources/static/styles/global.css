@@ -219,6 +219,19 @@ input, select {
 	margin: 0 15px;
 }
 
+.ordersList-foodState {
+	width: 1em;
+	height: 1em;
+	border-radius: 100%;
+	cursor: pointer;
+}
+.ordersList-foodState.otevreny {
+	background-color: red;
+}
+.ordersList-foodState.pripraveny {
+	background-color: green;
+}
+
 
 
 .itemBox {

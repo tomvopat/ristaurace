@@ -1,14 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home page</title>
-    <link href="css/main.css" rel="stylesheet" type="text/css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>rIStaurace - informační systém pro restaurace</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="styles/reset.css" />
+	<link rel="stylesheet" type="text/css" href="styles/global.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="scripts/global.js"></script>
 </head>
 <body>
-<h2>This is home page</h2>
-
-Empty request redirects here, set the page in RedirectController
+	<nav class="navigation">
+		<div class="navigation-content">
+			<a class="navigation-logoWrapper" href="index.html">
+				<img class="navigation-logo" src="images/logo.svg">
+			</a>
+			<ul class="navigation-list">
+				<li class="navigation-item">
+					<a class="navigation-link" href="index.html">Domů</a>
+				</li>
+				<li class="navigation-item">
+					<a class="navigation-link" href="orders-new.html">Nová objednávka</a>
+				</li>
+				<li class="navigation-item">
+					<a class="navigation-link" href="orders-list.html">Výpis objednávek</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<main class="main">
+		<div class="main-content">
+			<h1>Vítejte v informačním systému rIStaurace (demo)</h1>
+			<p>Systém je určen pro zjednodušení správy chodu restaurace, funguje přes webové rozhraní a jeho hlavní funkce jsou evidence objednávek zákazníků, inteligentní vytváření denních menu na zákládě oblíbenosti jídel a také doporučování množství daného jídla, udržování infomarcí o dostupném množství jídel a nápojů, vytváření denní uzávěrky (počty prodaných jídel a nápojů, tržba) a generování dlouhodobých statistik.</p>
+	</main>
 </body>
 </html>
