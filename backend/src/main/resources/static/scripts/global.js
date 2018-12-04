@@ -73,7 +73,7 @@ let createOrderItemHtml = function(item) {
 				drinks.forEach((drink => {
 					if(food.polozkaMenuByIdPolozkaMenu.id === drink.id) {
 						drinkItemsHtml = drinkItemsHtml
-						+ '<li id="drink-' + food.polozkaMenuByIdPolozkaMenu.id + '" class="menuList-item">'
+						+ '<li data-itemId="' + food.id + '" class="menuList-item">'
 						+	'<span class="ordersList-foodName">' + food.polozkaMenuByIdPolozkaMenu.nazev + '</span>'
 						+	'<span class="ordersList-foodState ' + food.stav + '"></span>'
 						+ '</li>';
@@ -82,7 +82,7 @@ let createOrderItemHtml = function(item) {
 				}));
 				if(!isDrink) {
 					foodItemsHtml = foodItemsHtml
-					+ '<li id="food-' + food.polozkaMenuByIdPolozkaMenu.id + '" class="menuList-item">'
+					+ '<li data-itemId="' + food.id + '" class="menuList-item">'
 					+	'<span class="ordersList-foodName">' + food.polozkaMenuByIdPolozkaMenu.nazev + '</span>'
 					+	'<span class="ordersList-foodState ' + food.stav + '"></span>'
 					+ '</li>';
@@ -108,8 +108,8 @@ let createOrderItemHtml = function(item) {
 				+		'</div>'
 				+	'</div>'
 				+	'<div class="itemBox-buttons">'
-				+		'<button class="button button-ready">Označit jako připravené</button>'
-				+		'<button class="button button-done">Označit jako vyřízené</button>'
+				+		'<button class="button button-ready">Označit vše jako připravené</button>'
+				+		'<button class="button button-done">Označit vše jako vyřízené</button>'
 				+	'</div>'
 				+ '</li>';
 				$("#ordersList").append(menuItemHtml);
@@ -167,7 +167,6 @@ $.ajax({
 
 
 $(document).on('submit', '#orderForm', function(event) {
-	event.preventDefault();
 	const tableId = $("#tableSelect").val();
 	let orderId;
 	$.ajax({ 
@@ -186,7 +185,7 @@ $(document).on('submit', '#orderForm', function(event) {
 						url: baseUrl + "menu-items/order/" + orderId + "/" + itemId,
 						dataType: "json",
 						success: function() {
-							console.log("here");
+							//
 						}
 					});
 				}
@@ -215,11 +214,38 @@ $(document).ready(function() {
 		});
 	});
 	
+	$("#ordersList").on("click", ".ordersList-foodState", function() {
+		let stateElement = $(this);
+		let itemElement = $(this.closest(".menuList-item"));
+		let itemId = $(itemElement).attr("data-itemId");
+		let requestType = '';
+		if($(this).hasClass("otevreny")) {
+			requestType = "setReady";
+		} else if($(this).hasClass("pripraveny")) {
+			requestType = "setOpened";
+		}
+		
+		$.ajax({
+			type: "POST",
+			url: baseUrl + "order/" + requestType + "/" + itemId,
+			dataType: "json",
+			success: function(data) {
+				$(stateElement).removeClass("otevreny");
+				$(stateElement).removeClass("pripraveny");
+				if(requestType === "setReady") {
+					$(stateElement).addClass("pripraveny");
+				} else {
+					$(stateElement).addClass("otevreny");
+				}
+			}
+		});
+	});
+	
 	$("#ordersList").on("click", ".button-done", function() {
 		let itemElement = $(this.closest(".ordersList-item"));
 		let itemId = $(itemElement).attr("data-itemId");
 		
-		$.ajax({ 
+		$.ajax({
 			type: "POST",
 			url: baseUrl + "order/setAllClosed/bill/" + itemId,
 			dataType: "json",

@@ -223,6 +223,7 @@ input, select {
 	width: 1em;
 	height: 1em;
 	border-radius: 100%;
+	cursor: pointer;
 }
 .ordersList-foodState.otevreny {
 	background-color: red;
