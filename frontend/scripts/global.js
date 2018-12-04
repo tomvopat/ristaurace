@@ -53,12 +53,21 @@ let createOrderItemHtml = function(item) {
 	let foodItemsHtml = '';
 	let drinkItemsHtml = '';
 	getOrderItemsById(item.ucetByIdUcet.id, function(foodItems) {
-		console.log(foodItems);
 		fetch(baseUrl + 'menu-items/category/2')
 		.then(response => {
 			return response.json();
 		})
 		.then(drinks => {
+			let closedCnt = 0;
+			foodItems.forEach((food) => {
+				if(food.stav === 'zavreny') {
+					closedCnt++;
+				}
+			});
+			/* do not show if thera are no items or all items are closed in bill */
+			if(foodItems.length < 1 || closedCnt === foodItems.length) {
+				return;
+			}
 			foodItems.forEach((food) => {
 				let isDrink = false;
 				drinks.forEach((drink => {
@@ -203,7 +212,33 @@ $(document).ready(function() {
 	timer();
 
 	$("#ordersList").on("click", ".button-ready", function() {
-		let itemId = $(this.closest(".ordersList-item")).attr("data-itemId");
-		// TODO PUT request
+		let itemElement = $(this.closest(".ordersList-item"));
+		let itemId = $(itemElement).attr("data-itemId");
+		
+		$.ajax({ 
+			type: "POST",
+			url: baseUrl + "order/setAllReady/bill/" + itemId,
+			dataType: "json",
+			success: function(data) {
+				itemElement.find(".otevreny").each(function() {
+					$(this).removeClass("otevreny");
+					$(this).addClass("pripraveny");
+				});
+			}
+		});
+	});
+	
+	$("#ordersList").on("click", ".button-done", function() {
+		let itemElement = $(this.closest(".ordersList-item"));
+		let itemId = $(itemElement).attr("data-itemId");
+		
+		$.ajax({ 
+			type: "POST",
+			url: baseUrl + "order/setAllClosed/bill/" + itemId,
+			dataType: "json",
+			success: function(data) {
+				$(itemElement).remove();
+			}
+		});
 	});
 });
