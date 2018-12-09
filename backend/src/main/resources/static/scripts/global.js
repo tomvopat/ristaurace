@@ -1,10 +1,12 @@
+/* CHANGE THIS TO WHATEVER DOMAIN THE PROJECT RUNS ON! */
 let baseUrl = "http://localhost:8080/"
 
-
+/* calls increaseTimer every second */
 let timer = function() {
 	setInterval("increaseTimer()", 1000);
 }
 
+/* adds one second and replaces timer HTML */
 let increaseTimer = function() {
 	$(".ordersList-item").each(function() {
 		let $counter = $(this).find(".ordersList-timer");
@@ -19,6 +21,7 @@ let increaseTimer = function() {
 	});
 }
 
+/* creates list element of one specific menu item */
 let createMenuItemHtml = function(item) {
 	let menuItemHtml =
 		'<li data-id="' + item.id + '" class="menuList-item">'
@@ -28,6 +31,7 @@ let createMenuItemHtml = function(item) {
 	return menuItemHtml;
 }
 
+/* returns JSON with items in specific order */
 let getOrderItemsById = function(id, callback) {
 	let items = [];
 	$.ajax({
@@ -45,6 +49,7 @@ let getOrderItemsById = function(id, callback) {
 	});
 }
 
+/* creates order HTML element based on recieved JSON containing order data */
 let createOrderItemHtml = function(item) {
 	let creationDate = new Date(item.ucetByIdUcet.datumVytvoreni);
 	let currentDate = new Date();
@@ -118,10 +123,12 @@ let createOrderItemHtml = function(item) {
 	});
 }
 
+/* creates table select HTML element based on received table data */
 let createTableOptionHtml = function(item) {
 	return '<option class="table-option" value=' + item.id + '>' + item.cisloStolu + '</option>';
 }
 
+/* recieved JSON with all tables. Calls function to create table option element on success */
 $.ajax({
 	type: "GET",
 	url: baseUrl + "tables/all",
@@ -133,7 +140,7 @@ $.ajax({
 	}
 });
 
-
+/* receive items from all five categories */
 for (let index = 1; index <= 5; index++) {
 	$.ajax({ 
 		type: "GET",
@@ -153,7 +160,7 @@ for (let index = 1; index <= 5; index++) {
 	});
 }
 
-
+/* reveive all opened bills. Calls createOrderItemHtml function on success */
 $.ajax({ 
 	type: "GET",
 	url: baseUrl + "bill/opened",
@@ -165,7 +172,7 @@ $.ajax({
 	}
 });
 
-
+/* Post form data on form submit */
 $(document).on('submit', '#orderForm', function(event) {
 	const tableId = $("#tableSelect").val();
 	let orderId;
@@ -197,6 +204,7 @@ $(document).on('submit', '#orderForm', function(event) {
 $(document).ready(function() {
 	timer();
 
+	/* change all menu items status to ready */
 	$("#ordersList").on("click", ".button-ready", function() {
 		let itemElement = $(this.closest(".ordersList-item"));
 		let itemId = $(itemElement).attr("data-itemId");
@@ -214,6 +222,7 @@ $(document).ready(function() {
 		});
 	});
 	
+	/* toggle menu item status */
 	$("#ordersList").on("click", ".ordersList-foodState", function() {
 		let stateElement = $(this);
 		let itemElement = $(this.closest(".menuList-item"));
@@ -241,6 +250,7 @@ $(document).ready(function() {
 		});
 	});
 	
+	/* set all menu items in order as done */
 	$("#ordersList").on("click", ".button-done", function() {
 		let itemElement = $(this.closest(".ordersList-item"));
 		let itemId = $(itemElement).attr("data-itemId");
