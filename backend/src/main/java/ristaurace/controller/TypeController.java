@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ristaurace.business.TypeBusiness;
 import ristaurace.entities.TypEntity;
 import ristaurace.repository.TypRepository;
 
@@ -15,18 +16,14 @@ import java.util.List;
 @RequestMapping(path = "/type")
 public class TypeController {
 
-    TypRepository typRepository;
+    private final TypeBusiness typeBusiness;
 
-    public TypeController(TypRepository typRepository) {
-        this.typRepository = typRepository;
+    public TypeController(TypeBusiness typeBusiness) {
+        this.typeBusiness = typeBusiness;
     }
 
-    /**
-     * Vrátí všechny dostupné typy jídel
-     * @return
-     */
     @GetMapping(path = "/all")
     public @ResponseBody List<TypEntity> getAll() {
-        return typRepository.findAll();
+        return typeBusiness.getAll();
     }
 }

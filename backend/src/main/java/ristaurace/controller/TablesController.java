@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ristaurace.business.TablesBusiness;
 import ristaurace.entities.StulEntity;
 import ristaurace.repository.StulRepository;
 
@@ -15,18 +16,14 @@ import java.util.List;
 @RequestMapping(path="/tables")
 public class TablesController {
 
-    private final StulRepository repository;
+    private final TablesBusiness tablesBusiness;
 
-    public TablesController(StulRepository repository) {
-        this.repository = repository;
+    public TablesController(TablesBusiness tablesBusiness) {
+        this.tablesBusiness = tablesBusiness;
     }
 
-    /**
-     * Vrátí všechny stoly v restauraci
-     * @return
-     */
     @GetMapping(path="/all")
     public @ResponseBody List<StulEntity> getTables() {
-        return repository.findAll();
+        return tablesBusiness.getTables();
     }
 }

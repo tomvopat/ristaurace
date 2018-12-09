@@ -4,6 +4,7 @@ package ristaurace.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import ristaurace.business.MenuItemsBusiness;
 import ristaurace.entities.PolozkaMenuEntity;
 import ristaurace.entities.StavPolozkyEntity;
 import ristaurace.entities.TypPolozkaMenuEntity;
@@ -21,56 +22,25 @@ import java.util.Optional;
 @RequestMapping(path="/menu-items")
 public class MenuItemsController {
 
-    private final PolozkaMenuRepository polozkaMenuRepository;
-    private final UcetRepository ucetRepository;
-    private final StavPolozkyRepository stavPolozkyRepository;
+    private final MenuItemsBusiness menuItemsBusiness;
 
-    public MenuItemsController(PolozkaMenuRepository polozkaMenuRepository, UcetRepository ucetRepository, StavPolozkyRepository stavPolozkyRepository) {
-        this.polozkaMenuRepository = polozkaMenuRepository;
-        this.ucetRepository = ucetRepository;
-        this.stavPolozkyRepository = stavPolozkyRepository;
+    public MenuItemsController(MenuItemsBusiness menuItemsBusiness) {
+        this.menuItemsBusiness = menuItemsBusiness;
     }
 
-    /**
-     * Vrátí všechny položky v menu
-     * @return
-     */
     @GetMapping(path="/")
     public @ResponseBody List<PolozkaMenuEntity> getAll() {
-        return polozkaMenuRepository.findAll();
+        return menuItemsBusiness.getAll();
     }
 
-    /**
-     * Vrátí všechny položky v menu ze zadané kategorie
-     * @param category_id
-     * @return
-     */
+
     @GetMapping(path="/category/{category_id}")
     public @ResponseBody List<PolozkaMenuEntity> getAllByCategory(@PathVariable Integer category_id) {
-        List<TypPolozkaMenuEntity> typPolozkaList = polozkaMenuRepository.findAllByCategory(category_id);
-        List<PolozkaMenuEntity> polozkaList = new ArrayList<>();
-        for(TypPolozkaMenuEntity typPolozka : typPolozkaList ) {
-            polozkaList.add(typPolozka.getPolozkaMenuByIdPolozkaMenu());
-        }
-
-        return polozkaList;
+        return menuItemsBusiness.getAllByCategory(category_id);
     }
 
-    /**
-     * Na zadaný účet přiřadí danou položku z menu
-     * @param ucet_id
-     * @param item_id
-     * @return
-     */
     @PostMapping(path="/order/{ucet_id}/{item_id}")
     public @ResponseBody StavPolozkyEntity orderItem(@PathVariable Integer ucet_id, @PathVariable Integer item_id) {
-        Optional<UcetEntity> ucetEntity = ucetRepository.findById(ucet_id);
-        Optional<PolozkaMenuEntity> polozkaMenuEntity = polozkaMenuRepository.findById(item_id);
-        if(!ucetEntity.isPresent() || !polozkaMenuEntity.isPresent()) return null;
-
-        StavPolozkyEntity stavPolozkyEntity = new StavPolozkyEntity();
-        stavPolozkyEntity.setUcetByIdUcet(ucetEntity.get());
-        stavPolozkyEntity.setPolozkaMenuByIdPolozkaMenu(polozkaMenuEntity.get());
-        return stavPolozkyRepository.saveAndFlush(stavPolozkyEntity);
+        return menuItemsBusiness.orderItem(ucet_id, item_id);
     }
 }
