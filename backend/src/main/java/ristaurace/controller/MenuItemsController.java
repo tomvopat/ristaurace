@@ -4,19 +4,11 @@ package ristaurace.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import ristaurace.business.MenuItemsBusiness;
-import ristaurace.entities.PolozkaMenuEntity;
-import ristaurace.entities.StavPolozkyEntity;
-import ristaurace.entities.TypPolozkaMenuEntity;
-import ristaurace.entities.UcetEntity;
-import ristaurace.repository.PolozkaMenuRepository;
-import ristaurace.repository.StavPolozkyRepository;
-import ristaurace.repository.StulRepository;
-import ristaurace.repository.UcetRepository;
+import ristaurace.businessLayer.MenuItemsBusiness;
+import ristaurace.dataLayer.entities.PolozkaMenuEntity;
+import ristaurace.dataLayer.entities.StavPolozkyEntity;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping(path="/menu-items")

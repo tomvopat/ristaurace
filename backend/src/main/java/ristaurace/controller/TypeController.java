@@ -6,9 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import ristaurace.business.TypeBusiness;
-import ristaurace.entities.TypEntity;
-import ristaurace.repository.TypRepository;
+import ristaurace.businessLayer.TypeBusiness;
+import ristaurace.dataLayer.entities.TypEntity;
 
 import java.util.List;
 

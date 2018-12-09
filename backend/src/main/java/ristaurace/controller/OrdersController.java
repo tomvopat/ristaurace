@@ -4,14 +4,12 @@ package ristaurace.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import ristaurace.business.OrdersBusiness;
-import ristaurace.entities.StavPolozkyEntity;
-import ristaurace.helpObjects.StavEnum;
-import ristaurace.repository.StavPolozkyRepository;
+import ristaurace.businessLayer.OrdersBusiness;
+import ristaurace.dataLayer.entities.StavPolozkyEntity;
+import ristaurace.dataLayer.helpObjects.StavEnum;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping(path="/order")

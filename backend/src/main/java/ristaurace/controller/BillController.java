@@ -4,18 +4,11 @@ package ristaurace.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import ristaurace.business.BillBusiness;
-import ristaurace.entities.StulEntity;
-import ristaurace.entities.StulUcetEntity;
-import ristaurace.entities.UcetEntity;
-import ristaurace.helpObjects.StavEnum;
-import ristaurace.repository.StulRepository;
-import ristaurace.repository.StulUcetRepository;
-import ristaurace.repository.UcetRepository;
+import ristaurace.businessLayer.BillBusiness;
+import ristaurace.dataLayer.entities.StulUcetEntity;
+import ristaurace.dataLayer.entities.UcetEntity;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping(path="/bill")
