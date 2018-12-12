@@ -11,6 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 public class RedirectController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String redirectExample(HttpServletRequest request) {
-        return "redirect:" + request.getScheme() +request.getRequestURL()+ "home";
+        return "redirect:" + request.getRequestURL() + "index.html";
     }
 }
