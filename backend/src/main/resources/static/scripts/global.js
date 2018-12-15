@@ -1,12 +1,24 @@
-/* CHANGE THIS TO WHATEVER DOMAIN THE PROJECT RUNS ON! */
+/**
+ * @file File containing all neccessaty methods to generate HTML and manipulate with page's HTML content
+ * @author Lukáš Chalupa <chaluluk@fit.cvut.cz>
+ */
+
+/**
+ * variable contaning base URL the project runs on.
+ * CHANGE THIS TO WHATEVER DOMAIN THE PROJECT RUNS ON!
+ */
 let baseUrl = "http://localhost:8080/"
 
-/* calls increaseTimer every second */
+/**
+ *  function that calls increaseTimer() every second
+ */
 let timer = function() {
 	setInterval("increaseTimer()", 1000);
 }
 
-/* adds one second and replaces timer HTML */
+/**
+ * Adds one second to all HTML elements with "orderList-item" class
+ */
 let increaseTimer = function() {
 	$(".ordersList-item").each(function() {
 		let $counter = $(this).find(".ordersList-timer");
@@ -21,7 +33,10 @@ let increaseTimer = function() {
 	});
 }
 
-/* creates list element of one specific menu item */
+/**
+ * Function that creates new list item HTML of one specific menu item
+ * @return menu item HTML
+ */
 let createMenuItemHtml = function(item) {
 	let menuItemHtml =
 		'<li data-id="' + item.id + '" class="menuList-item">'
@@ -31,7 +46,10 @@ let createMenuItemHtml = function(item) {
 	return menuItemHtml;
 }
 
-/* returns JSON with items in specific order */
+/**
+ * Function that retrieves JSON with order items in specific order.
+ * On request success, items are pushed to items array
+ */
 let getOrderItemsById = function(id, callback) {
 	let items = [];
 	$.ajax({
@@ -49,7 +67,11 @@ let getOrderItemsById = function(id, callback) {
 	});
 }
 
-/* creates order HTML element based on recieved JSON containing order data */
+/**
+ * Function that creates order HTML element based on recieved JSON containing order data.
+ * Foods and drinks contained in an order are separated according to their category.
+ * @param {object} item - one specific order item
+ */
 let createOrderItemHtml = function(item) {
 	let creationDate = new Date(item.ucetByIdUcet.datumVytvoreni);
 	let currentDate = new Date();
@@ -123,57 +145,79 @@ let createOrderItemHtml = function(item) {
 	});
 }
 
-/* creates table select HTML element based on received table data */
+/**
+ * Function that creates table select HTML element based on received table data
+ * @param {object} item - JSON object containing id and table number
+ */
 let createTableOptionHtml = function(item) {
 	return '<option class="table-option" value=' + item.id + '>' + item.cisloStolu + '</option>';
 }
 
-/* recieved JSON with all tables. Calls function to create table option element on success */
-$.ajax({
-	type: "GET",
-	url: baseUrl + "tables/all",
-	dataType: "json",
-	success: function(data){
-		data.forEach(item => {
-			$("#tableSelect").append(createTableOptionHtml(item));
-		});
-	}
-});
-
-/* receive items from all five categories */
-for (let index = 1; index <= 5; index++) {
-	$.ajax({ 
+/**
+ * GET request that receives JSON with all tables.
+ * On success createTableOptionHtml() is called for each table
+ */
+let getAllTables = function() {
+	$.ajax({
 		type: "GET",
-		url: baseUrl + "menu-items/category/" + index,
+		url: baseUrl + "tables/all",
 		dataType: "json",
 		success: function(data){
 			data.forEach(item => {
-				if(index === 1) {
-					$("#daily-items").append(createMenuItemHtml(item));
-				} else if(index == 2) {
-					$("#drinks").append(createMenuItemHtml(item));
-				} else {
-					$("#permanent-items").append(createMenuItemHtml(item));
-				}
+				$("#tableSelect").append(createTableOptionHtml(item));
 			});
 		}
 	});
 }
+getAllTables();
 
-/* reveive all opened bills. Calls createOrderItemHtml function on success */
-$.ajax({ 
-	type: "GET",
-	url: baseUrl + "bill/opened",
-	dataType: "json",
-	success: function(data){
-		data.forEach(item => {
-			createOrderItemHtml(item);
+/**
+ * Receive items from all five categories. Creates menu item in given category HTML item on request success.
+ * Needs improvement. Call request to get all categories first. This won't work if there aren't five categories
+ */
+let getMenuItems = function() {
+	for (let index = 1; index <= 5; index++) {
+		$.ajax({ 
+			type: "GET",
+			url: baseUrl + "menu-items/category/" + index,
+			dataType: "json",
+			success: function(data){
+				data.forEach(item => {
+					if(index === 1) {
+						$("#daily-items").append(createMenuItemHtml(item));
+					} else if(index == 2) {
+						$("#drinks").append(createMenuItemHtml(item));
+					} else {
+						$("#permanent-items").append(createMenuItemHtml(item));
+					}
+				});
+			}
 		});
 	}
-});
+}
+getMenuItems();
 
-/* Post form data on form submit */
-$(document).on('submit', '#orderForm', function(event) {
+/**
+ * Request that reveives all opened bills. Calls createOrderItemHtml function on success
+ */
+let getOpenedBills = function() {
+	$.ajax({ 
+		type: "GET",
+		url: baseUrl + "bill/opened",
+		dataType: "json",
+		success: function(data){
+			data.forEach(item => {
+				createOrderItemHtml(item);
+			});
+		}
+	});
+}
+getOpenedBills();
+
+/**
+ * Post form data on form submit. Creates bill first, then links it with menu items
+ */
+let submitOrderForm = function() {
 	const tableId = $("#tableSelect").val();
 	let orderId;
 	$.ajax({ 
@@ -199,69 +243,94 @@ $(document).on('submit', '#orderForm', function(event) {
 			});
 		}
 	});
+}
+$(document).on('submit', '#orderForm', function(event) {
+	submitOrderForm();
 });
+
+
+/**
+ * Change status for all menu items in order to ready.
+ * @param {HTMLElement} orderButtonElement - button HTML element
+ */
+let setAllReady = function(orderButtonElement) {
+	let itemElement = $(orderButtonElement.closest(".ordersList-item"));
+	let itemId = $(itemElement).attr("data-itemId");
+	
+	$.ajax({ 
+		type: "POST",
+		url: baseUrl + "order/setAllReady/bill/" + itemId,
+		dataType: "json",
+		success: function(data) {
+			itemElement.find(".otevreny").each(function() {
+				$(this).removeClass("otevreny");
+				$(this).addClass("pripraveny");
+			});
+		}
+	});
+}
+
+/**
+ * Change status for all menu items in order to done.
+ * @param {HTMLElement} orderButtonElement - button HTML element
+ */
+let setAllDone = function(orderButtonElement) {
+	let itemElement = $(orderButtonElement.closest(".ordersList-item"));
+	let itemId = $(itemElement).attr("data-itemId");
+	
+	$.ajax({
+		type: "POST",
+		url: baseUrl + "order/setAllClosed/bill/" + itemId,
+		dataType: "json",
+		success: function(data) {
+			$(itemElement).remove();
+		}
+	});
+}
+
+/**
+ * Toggle menu item status. From ready to opened or vice versa.
+ * @param {HTMLElement} foodStateElement - HTML element showing menu item's state
+ */
+let toggleMenuItemStatus = function(foodStateElement) {
+	let stateElement = $(foodStateElement);
+	let itemElement = $(foodStateElement.closest(".menuList-item"));
+	let itemId = $(itemElement).attr("data-itemId");
+	let requestType = '';
+	if($(foodStateElement).hasClass("otevreny")) {
+		requestType = "setReady";
+	} else if($(foodStateElement).hasClass("pripraveny")) {
+		requestType = "setOpened";
+	}
+	
+	$.ajax({
+		type: "POST",
+		url: baseUrl + "order/" + requestType + "/" + itemId,
+		dataType: "json",
+		success: function(data) {
+			$(stateElement).removeClass("otevreny");
+			$(stateElement).removeClass("pripraveny");
+			if(requestType === "setReady") {
+				$(stateElement).addClass("pripraveny");
+			} else {
+				$(stateElement).addClass("otevreny");
+			}
+		}
+	});
+}
 
 $(document).ready(function() {
 	timer();
 
-	/* change all menu items status to ready */
 	$("#ordersList").on("click", ".button-ready", function() {
-		let itemElement = $(this.closest(".ordersList-item"));
-		let itemId = $(itemElement).attr("data-itemId");
-		
-		$.ajax({ 
-			type: "POST",
-			url: baseUrl + "order/setAllReady/bill/" + itemId,
-			dataType: "json",
-			success: function(data) {
-				itemElement.find(".otevreny").each(function() {
-					$(this).removeClass("otevreny");
-					$(this).addClass("pripraveny");
-				});
-			}
-		});
+		setAllReady(this);
 	});
 	
-	/* toggle menu item status */
 	$("#ordersList").on("click", ".ordersList-foodState", function() {
-		let stateElement = $(this);
-		let itemElement = $(this.closest(".menuList-item"));
-		let itemId = $(itemElement).attr("data-itemId");
-		let requestType = '';
-		if($(this).hasClass("otevreny")) {
-			requestType = "setReady";
-		} else if($(this).hasClass("pripraveny")) {
-			requestType = "setOpened";
-		}
-		
-		$.ajax({
-			type: "POST",
-			url: baseUrl + "order/" + requestType + "/" + itemId,
-			dataType: "json",
-			success: function(data) {
-				$(stateElement).removeClass("otevreny");
-				$(stateElement).removeClass("pripraveny");
-				if(requestType === "setReady") {
-					$(stateElement).addClass("pripraveny");
-				} else {
-					$(stateElement).addClass("otevreny");
-				}
-			}
-		});
+		toggleMenuItemStatus(this);
 	});
-	
-	/* set all menu items in order as done */
+
 	$("#ordersList").on("click", ".button-done", function() {
-		let itemElement = $(this.closest(".ordersList-item"));
-		let itemId = $(itemElement).attr("data-itemId");
-		
-		$.ajax({
-			type: "POST",
-			url: baseUrl + "order/setAllClosed/bill/" + itemId,
-			dataType: "json",
-			success: function(data) {
-				$(itemElement).remove();
-			}
-		});
+		setAllDone(this);
 	});
 });
