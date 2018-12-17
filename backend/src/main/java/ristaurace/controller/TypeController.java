@@ -11,6 +11,10 @@ import ristaurace.dataLayer.entities.TypEntity;
 
 import java.util.List;
 
+/**
+ * Tato třída postkytuje REST api pro práci s typy položek menu.
+ * Stará se o získání všech typů.
+ */
 @Controller
 @RequestMapping(path = "/type")
 public class TypeController {
@@ -21,6 +25,10 @@ public class TypeController {
         this.typeBusiness = typeBusiness;
     }
 
+    /**
+     * Vrátí seznam všech typů položek menu.
+     * @return
+     */
     @GetMapping(path = "/all")
     public @ResponseBody List<TypEntity> getAll() {
         return typeBusiness.getAll();

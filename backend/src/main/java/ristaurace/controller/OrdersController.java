@@ -11,6 +11,10 @@ import ristaurace.dataLayer.helpObjects.StavEnum;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Tato třída poskytuje REST api pro práci s objednávkami.
+ * Stará se získání všech objednávek, získání položek s určitým stavem, změnu stavu určité položky.
+ */
 @Controller
 @RequestMapping(path="/order")
 public class OrdersController {
@@ -21,65 +25,107 @@ public class OrdersController {
         this.ordersBusiness = ordersBusiness;
     }
 
+    /**
+     * Vrátí list všech objednaných položek.
+     * @return
+     */
     @GetMapping(path="/all")
     public @ResponseBody List<StavPolozkyEntity> getAllOrders() {
         return ordersBusiness.getAllOrders();
     }
 
+    /**
+     * Vrátí objednou položku podle zadaného id.
+     * @param id
+     * @return
+     */
     @GetMapping(path="/id/{id}")
     public @ResponseBody StavPolozkyEntity getOrder(@PathVariable Integer id) {
         return ordersBusiness.getOrder(id);
     }
 
-    @GetMapping(path="/date/{date}")
-    public @ResponseBody String getOrdersDate(@PathVariable LocalDate date) {
-        return ordersBusiness.getOrdersDate(date);
-    }
-
+    /**
+     * Vrátí seznam položek, které mají stav "otevřený".
+     * @return
+     */
     @GetMapping(path="/pending")
     public @ResponseBody List<StavPolozkyEntity> getPending() {
         return ordersBusiness.getPending();
     }
 
+    /**
+     * Vrátí seznam položek, které mají stav "přípravený"
+     * @return
+     */
     @GetMapping(path="/ready")
     public @ResponseBody List<StavPolozkyEntity> getReady() {
         return ordersBusiness.getReady();
     }
 
+    /**
+     * Vrátí seznam položek, který mají stav "zavřený".
+     * @return
+     */
     @GetMapping(path="/closed")
     public @ResponseBody List<StavPolozkyEntity> getClosed() {
         return ordersBusiness.getClosed();
     }
 
+    /**
+     * Nastavý stav "otevřený" objednávce podle zadaného id.
+     * @param id
+     * @return
+     */
     @PostMapping(path="/setOpened/{id}")
     public @ResponseBody StavPolozkyEntity setOrderOpened(@PathVariable Integer id) {
         return ordersBusiness.setOrderOpened(id);
     }
 
+    /**
+     * Nastavý stav "připravený" objednávce podle zadaného id.
+     * @param id
+     * @return
+     */
     @PostMapping(path="/setReady/{id}")
     public @ResponseBody StavPolozkyEntity setOrderReady(@PathVariable Integer id) {
         return ordersBusiness.setOrderReady(id);
     }
 
+    /**
+     * Nastavý stav "zavřený" objednávce podle zadaného id.
+     * @param id
+     * @return
+     */
     @PostMapping(path="/setDone/{id}")
     public @ResponseBody StavPolozkyEntity setOrderDone(@PathVariable Integer id) {
         return ordersBusiness.setOrderDone(id);
     }
 
-    public List<StavPolozkyEntity> setAllOrdersWithSomeBillAs(Integer ucet_id, StavEnum stav) {
-        return ordersBusiness.setAllOrdersWithSomeBillAs(ucet_id, stav);
-    }
-
+    /**
+     * Nastaví stav "otevřený" všem položkám na účtu zadaným identifikátorem.
+     * @param bill_id
+     * @return
+     */
     @PostMapping(path="/setAllOpened/bill/{bill_id}")
     public @ResponseBody List<StavPolozkyEntity> setAllOpened(@PathVariable Integer bill_id) {
         return ordersBusiness.setAllOpened(bill_id);
     }
 
+    /**
+     * Nastaví stav "připravený" všem položkám na účtu zadaným identifikátorem.
+     * @param bill_id
+     * @return
+     */
     @PostMapping(path="/setAllReady/bill/{bill_id}")
     public @ResponseBody List<StavPolozkyEntity> setAllReady(@PathVariable Integer bill_id) {
         return ordersBusiness.setAllReady(bill_id);
     }
 
+    /**
+     * Nastaví stav "zavřený" všem položkám na účtu zadaným identifikátorem.
+     * @param bill_id
+     * @return
+     */
     @PostMapping(path="/setAllClosed/bill/{bill_id}")
     public @ResponseBody List<StavPolozkyEntity> setAllClosed(@PathVariable Integer bill_id) {
         return ordersBusiness.setAllClosed(bill_id);

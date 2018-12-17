@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Tato třída se stará o přesměrování clienta na domovskou stránku (index.html)
+ */
 @Controller
 public class RedirectController {
     @RequestMapping(value = "/", method = RequestMethod.GET)

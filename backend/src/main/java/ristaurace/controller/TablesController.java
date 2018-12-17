@@ -11,6 +11,10 @@ import ristaurace.dataLayer.entities.StulEntity;
 
 import java.util.List;
 
+/**
+ * Tato třída postkytuje REST api pro práci se stoly.
+ * Stará se o vracení všech dostupných stolů.
+ */
 @Controller
 @RequestMapping(path="/tables")
 public class TablesController {
@@ -21,6 +25,10 @@ public class TablesController {
         this.tablesBusiness = tablesBusiness;
     }
 
+    /**
+     * Vrátí list všech stolů v restauraci.
+     * @return
+     */
     @GetMapping(path="/all")
     public @ResponseBody List<StulEntity> getTables() {
         return tablesBusiness.getTables();
