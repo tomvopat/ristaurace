@@ -103,32 +103,32 @@ public class OrdersController {
 
     /**
      * Nastaví stav "otevřený" všem položkám na účtu zadaným identifikátorem.
-     * @param bill_id
+     * @param billId
      * @return
      */
-    @PostMapping(path="/setAllOpened/bill/{bill_id}")
-    public @ResponseBody List<StavPolozkyEntity> setAllOpened(@PathVariable Integer bill_id) {
-        return ordersBusiness.setAllOpened(bill_id);
+    @PostMapping(path="/setAllOpened/bill/{billId}")
+    public @ResponseBody List<StavPolozkyEntity> setAllOpened(@PathVariable Integer billId) {
+        return ordersBusiness.setAllOpened(billId);
     }
 
     /**
      * Nastaví stav "připravený" všem položkám na účtu zadaným identifikátorem.
-     * @param bill_id
+     * @param billId
      * @return
      */
-    @PostMapping(path="/setAllReady/bill/{bill_id}")
-    public @ResponseBody List<StavPolozkyEntity> setAllReady(@PathVariable Integer bill_id) {
-        return ordersBusiness.setAllReady(bill_id);
+    @PostMapping(path="/setAllReady/bill/{billId}")
+    public @ResponseBody List<StavPolozkyEntity> setAllReady(@PathVariable Integer billId) {
+        return ordersBusiness.setAllReady(billId);
     }
 
     /**
      * Nastaví stav "zavřený" všem položkám na účtu zadaným identifikátorem.
-     * @param bill_id
+     * @param billId
      * @return
      */
-    @PostMapping(path="/setAllClosed/bill/{bill_id}")
-    public @ResponseBody List<StavPolozkyEntity> setAllClosed(@PathVariable Integer bill_id) {
-        return ordersBusiness.setAllClosed(bill_id);
+    @PostMapping(path="/setAllClosed/bill/{billId}")
+    public @ResponseBody List<StavPolozkyEntity> setAllClosed(@PathVariable Integer billId) {
+        return ordersBusiness.setAllClosed(billId);
     }
 
 }

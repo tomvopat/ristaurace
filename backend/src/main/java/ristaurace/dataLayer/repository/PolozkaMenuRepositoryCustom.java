@@ -13,8 +13,8 @@ public interface PolozkaMenuRepositoryCustom {
 
     /**
      * Vrátí všechny TypPolozkaMenuEntity podle zvolené kategorie
-     * @param category_id
+     * @param categoryId
      * @return
      */
-    List<TypPolozkaMenuEntity> findAllByCategory(Integer category_id);
+    List<TypPolozkaMenuEntity> findAllByCategory(Integer categoryId);
 }

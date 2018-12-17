@@ -107,12 +107,12 @@ public class OrdersBusiness {
 
     /**
      * Nastaví všem položkám z účtu, který je zadán identifikátorem, nějaký stav.
-     * @param ucet_id
+     * @param ucetId
      * @param stav
      * @return
      */
-    public List<StavPolozkyEntity> setAllOrdersWithSomeBillAs(Integer ucet_id, StavEnum stav) {
-        List<StavPolozkyEntity> stavPolozkyEntityList = stavPolozkyRepository.findAllWithBill(ucet_id);
+    public List<StavPolozkyEntity> setAllOrdersWithSomeBillAs(Integer ucetId, StavEnum stav) {
+        List<StavPolozkyEntity> stavPolozkyEntityList = stavPolozkyRepository.findAllWithBill(ucetId);
         for(StavPolozkyEntity stavPolozky : stavPolozkyEntityList) {
             stavPolozky.setStav(stav);
         }
@@ -122,28 +122,28 @@ public class OrdersBusiness {
 
     /**
      * Nastavý všechny položky u daného účtu jako otevřené
-     * @param bill_id
+     * @param billId
      * @return
      */
-    public List<StavPolozkyEntity> setAllOpened(Integer bill_id) {
-        return setAllOrdersWithSomeBillAs(bill_id, StavEnum.otevreny);
+    public List<StavPolozkyEntity> setAllOpened(Integer billId) {
+        return setAllOrdersWithSomeBillAs(billId, StavEnum.otevreny);
     }
 
     /**
      * Nastaví všechny položky u daného účtu jako připravené
-     * @param bill_id
+     * @param billId
      * @return
      */
-    public List<StavPolozkyEntity> setAllReady(Integer bill_id) {
-        return setAllOrdersWithSomeBillAs(bill_id, StavEnum.pripraveny);
+    public List<StavPolozkyEntity> setAllReady(Integer billId) {
+        return setAllOrdersWithSomeBillAs(billId, StavEnum.pripraveny);
     }
 
     /**
      * Nastaví všechny položky u daného účtu jako zavřené
-     * @param bill_id
+     * @param billId
      * @return
      */
-    public List<StavPolozkyEntity> setAllClosed(Integer bill_id) {
-        return setAllOrdersWithSomeBillAs(bill_id, StavEnum.zavreny);
+    public List<StavPolozkyEntity> setAllClosed(Integer billId) {
+        return setAllOrdersWithSomeBillAs(billId, StavEnum.zavreny);
     }
 }

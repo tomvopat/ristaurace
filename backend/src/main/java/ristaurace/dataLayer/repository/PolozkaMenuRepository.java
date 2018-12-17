@@ -24,9 +24,9 @@ public interface PolozkaMenuRepository extends JpaRepository<PolozkaMenuEntity, 
 
     /**
      * Vrátí vššchny položky v zadané kategorii (s daným typem).
-     * @param category_id identifikátor typu
+     * @param categoryId identifikátor typu
      * @return
      */
     @Override
-    List<TypPolozkaMenuEntity> findAllByCategory(Integer category_id);
+    List<TypPolozkaMenuEntity> findAllByCategory(Integer categoryId);
 }

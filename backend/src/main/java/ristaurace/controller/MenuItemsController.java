@@ -36,22 +36,22 @@ public class MenuItemsController {
 
     /**
      * Vrátí list všech položek menu podle zadané kategorie.
-     * @param category_id
+     * @param categoryId
      * @return
      */
-    @GetMapping(path="/category/{category_id}")
-    public @ResponseBody List<PolozkaMenuEntity> getAllByCategory(@PathVariable Integer category_id) {
-        return menuItemsBusiness.getAllByCategory(category_id);
+    @GetMapping(path="/category/{categoryId}")
+    public @ResponseBody List<PolozkaMenuEntity> getAllByCategory(@PathVariable Integer categoryId) {
+        return menuItemsBusiness.getAllByCategory(categoryId);
     }
 
     /**
      * Přiřadí položku z menu na účet zadaný identifikátorem
-     * @param ucet_id
-     * @param item_id
+     * @param ucetId
+     * @param itemId
      * @return Položka přiřazená na účet
      */
-    @PostMapping(path="/order/{ucet_id}/{item_id}")
-    public @ResponseBody StavPolozkyEntity orderItem(@PathVariable Integer ucet_id, @PathVariable Integer item_id) {
-        return menuItemsBusiness.orderItem(ucet_id, item_id);
+    @PostMapping(path="/order/{ucetId}/{itemId}")
+    public @ResponseBody StavPolozkyEntity orderItem(@PathVariable Integer ucetId, @PathVariable Integer itemId) {
+        return menuItemsBusiness.orderItem(ucetId, itemId);
     }
 }

@@ -41,11 +41,11 @@ public class MenuItemsBusiness {
 
     /**
      * Vrátí všechny položky v menu ze zadané kategorie
-     * @param category_id
+     * @param categoryId
      * @return
      */
-    public List<PolozkaMenuEntity> getAllByCategory(Integer category_id) {
-        List<TypPolozkaMenuEntity> typPolozkaList = polozkaMenuRepository.findAllByCategory(category_id);
+    public List<PolozkaMenuEntity> getAllByCategory(Integer categoryId) {
+        List<TypPolozkaMenuEntity> typPolozkaList = polozkaMenuRepository.findAllByCategory(categoryId);
         List<PolozkaMenuEntity> polozkaList = new ArrayList<>();
         for(TypPolozkaMenuEntity typPolozka : typPolozkaList ) {
             polozkaList.add(typPolozka.getPolozkaMenuByIdPolozkaMenu());
@@ -56,13 +56,13 @@ public class MenuItemsBusiness {
 
     /**
      * Na zadaný účet přiřadí danou položku z menu
-     * @param ucet_id
-     * @param item_id
+     * @param ucetId
+     * @param itemId
      * @return
      */
-    public StavPolozkyEntity orderItem(Integer ucet_id, Integer item_id) {
-        Optional<UcetEntity> ucetEntity = ucetRepository.findById(ucet_id);
-        Optional<PolozkaMenuEntity> polozkaMenuEntity = polozkaMenuRepository.findById(item_id);
+    public StavPolozkyEntity orderItem(Integer ucetId, Integer itemId) {
+        Optional<UcetEntity> ucetEntity = ucetRepository.findById(ucetId);
+        Optional<PolozkaMenuEntity> polozkaMenuEntity = polozkaMenuRepository.findById(itemId);
         if(!ucetEntity.isPresent() || !polozkaMenuEntity.isPresent()) return null;
 
         StavPolozkyEntity stavPolozkyEntity = new StavPolozkyEntity();

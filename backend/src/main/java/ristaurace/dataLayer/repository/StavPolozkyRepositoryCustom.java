@@ -31,9 +31,9 @@ public interface StavPolozkyRepositoryCustom {
 
     /**
      * Vrátí všechny položky z daného účtu
-     * @param bill_id
+     * @param billId
      * @return
      */
-    List<StavPolozkyEntity> findAllWithBill(Integer bill_id);
+    List<StavPolozkyEntity> findAllWithBill(Integer billId);
 
 }

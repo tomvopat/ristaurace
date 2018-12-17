@@ -63,32 +63,32 @@ public class BillController {
 
     /**
      * Nastaví stav "otevřený" účtu zadanému identifikátorem.
-     * @param bill_id
+     * @param billId
      * @return účet se změněným stavem
      */
-    @PostMapping(path = "/open/{bill_id}")
-    public @ResponseBody StulUcetEntity setBillOpened(@PathVariable Integer bill_id) {
-        return billBusiness.setBillOpened(bill_id);
+    @PostMapping(path = "/open/{billId}")
+    public @ResponseBody StulUcetEntity setBillOpened(@PathVariable Integer billId) {
+        return billBusiness.setBillOpened(billId);
     }
 
     /**
      * Nastaví stav "zavřený" účtu zadanému identifikátorem.
-     * @param bill_id
+     * @param billId
      * @param card
      * @return účet se změněným stavem
      */
-    @PostMapping(path = "/close/{bill_id}")
-    public @ResponseBody StulUcetEntity setBillClosed(@PathVariable Integer bill_id, @RequestParam Boolean card) {
-        return billBusiness.setBillClosed(bill_id, card);
+    @PostMapping(path = "/close/{billId}")
+    public @ResponseBody StulUcetEntity setBillClosed(@PathVariable Integer billId, @RequestParam Boolean card) {
+        return billBusiness.setBillClosed(billId, card);
     }
 
     /**
      * Vytvoří nový účet, který je přiřazen stolu zadanému identifikátorem.
-     * @param table_id
+     * @param tableId
      * @return nově vytvořený účet.
      */
-    @PostMapping(path = "/new/{table_id}")
-    public @ResponseBody StulUcetEntity createNew(@PathVariable Integer table_id) {
-        return billBusiness.createNew(table_id);
+    @PostMapping(path = "/new/{tableId}")
+    public @ResponseBody StulUcetEntity createNew(@PathVariable Integer tableId) {
+        return billBusiness.createNew(tableId);
     }
 }

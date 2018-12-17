@@ -21,12 +21,12 @@ public class PolozkaMenuRepositoryImpl implements PolozkaMenuRepositoryCustom {
     EntityManager entityManager;
 
     @Override
-    public List<TypPolozkaMenuEntity> findAllByCategory(Integer category_id) {
+    public List<TypPolozkaMenuEntity> findAllByCategory(Integer categoryId) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 
         CriteriaQuery<TypPolozkaMenuEntity> cq = cb.createQuery(TypPolozkaMenuEntity.class);
         Root<TypPolozkaMenuEntity> polozka = cq.from(TypPolozkaMenuEntity.class);
-        cq.where(cb.equal(polozka.get("typByIdTyp"), category_id));
+        cq.where(cb.equal(polozka.get("typByIdTyp"), categoryId));
 
         TypedQuery<TypPolozkaMenuEntity> query = entityManager.createQuery(cq);
         return query.getResultList();

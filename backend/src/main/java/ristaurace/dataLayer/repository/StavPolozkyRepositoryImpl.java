@@ -47,14 +47,14 @@ public class StavPolozkyRepositoryImpl implements StavPolozkyRepositoryCustom {
     }
 
     @Override
-    public List<StavPolozkyEntity> findAllWithBill(Integer bill_id) {
+    public List<StavPolozkyEntity> findAllWithBill(Integer billId) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<StavPolozkyEntity> cq = cb.createQuery(StavPolozkyEntity.class);
         Root<StavPolozkyEntity> stav = cq.from(StavPolozkyEntity.class);
 
         Join<StavPolozkyEntity, UcetEntity> stavUcet = stav.join("ucetByIdUcet");
 
-        cq.where(cb.equal(stavUcet.get("id"), bill_id));
+        cq.where(cb.equal(stavUcet.get("id"), billId));
         TypedQuery<StavPolozkyEntity> q = entityManager.createQuery(cq);
         return q.getResultList();
     }

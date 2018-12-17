@@ -91,33 +91,33 @@ public class BillBusiness {
 
     /**
      * Otevře starý účet
-     * @param bill_id
+     * @param billId
      * @return
      */
-    public StulUcetEntity setBillOpened(Integer bill_id) {
-        return setState(bill_id, StavEnum.otevreny);
+    public StulUcetEntity setBillOpened(Integer billId) {
+        return setState(billId, StavEnum.otevreny);
     }
 
     /**
      * Uzavře účet
-     * @param bill_id
+     * @param billId
      * @param card
      * @return
      */
-    public StulUcetEntity setBillClosed(Integer bill_id, Boolean card) {
-        StulUcetEntity stulUcetEntity = setState(bill_id, StavEnum.zavreny);
+    public StulUcetEntity setBillClosed(Integer billId, Boolean card) {
+        StulUcetEntity stulUcetEntity = setState(billId, StavEnum.zavreny);
         stulUcetEntity.getUcetByIdUcet().setPlatbaKartou(card);
         return stulUcetRepository.save(stulUcetEntity);
     }
 
     /**
      * Vytvoří nový účet k danému stolu
-     * @param table_id
+     * @param tableId
      * @return
      */
-    public StulUcetEntity createNew(Integer table_id) {
+    public StulUcetEntity createNew(Integer tableId) {
 
-        Optional<StulEntity> stulEntityOptional = stulRepository.findById(table_id);
+        Optional<StulEntity> stulEntityOptional = stulRepository.findById(tableId);
         if(!stulEntityOptional.isPresent()) return null;
 
 
