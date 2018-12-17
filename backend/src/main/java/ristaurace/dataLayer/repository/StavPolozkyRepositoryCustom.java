@@ -6,6 +6,9 @@ import ristaurace.dataLayer.entities.StavPolozkyEntity;
 
 import java.util.List;
 
+/**
+ * Tato třída definuje rozhraní pro práci s databázovými objekty typu "StavPolozkyEntity"
+ */
 public interface StavPolozkyRepositoryCustom {
 
     /**

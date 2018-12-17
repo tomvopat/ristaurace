@@ -12,6 +12,9 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.util.List;
 
+/**
+ * Tato třída implementuje rozhraní definované v tříde "StavPolozkyRepositoryCustom" pro práci se stavem položky menu
+ */
 public class StavPolozkyRepositoryImpl implements StavPolozkyRepositoryCustom {
 
     @PersistenceContext

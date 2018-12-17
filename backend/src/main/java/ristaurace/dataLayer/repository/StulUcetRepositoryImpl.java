@@ -14,6 +14,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+/**
+ * Tato třída implementuje rozhraní definované v tříde "StulUcetRepositoryCustom" pro práci s entitou stulUcetEntity
+ */
 public class StulUcetRepositoryImpl implements StulUcetRepositoryCustom {
 
     @Autowired

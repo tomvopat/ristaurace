@@ -8,7 +8,6 @@ import ristaurace.dataLayer.entities.StavPolozkyEntity;
 import ristaurace.dataLayer.helpObjects.StavEnum;
 import ristaurace.dataLayer.repository.StavPolozkyRepository;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 

@@ -12,6 +12,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+/**
+ * Tato třída implementuje rozhraní definované v tříde "PolozkaMenuRepositoryCustom" pro práci s pložkami menu
+ */
 public class PolozkaMenuRepositoryImpl implements PolozkaMenuRepositoryCustom {
 
     @PersistenceContext

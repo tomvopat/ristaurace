@@ -6,6 +6,9 @@ import ristaurace.dataLayer.entities.TypPolozkaMenuEntity;
 
 import java.util.List;
 
+/**
+ * Tato třída definuje rozhraní pro práci s databázovými objekty typu ""
+ */
 public interface PolozkaMenuRepositoryCustom {
 
     /**
