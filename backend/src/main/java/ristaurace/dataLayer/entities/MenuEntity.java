@@ -7,6 +7,10 @@ import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Objects;
 
+/**
+ * Třída mapující databázovou entitu "menu" na java objekt.
+ * Více info viz dokumentace relačního modelu.
+ */
 @Entity
 @Table(name = "menu", schema = "public", catalog = "ristaurace")
 public class MenuEntity {

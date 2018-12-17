@@ -5,6 +5,10 @@ package ristaurace.dataLayer.entities;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * Třída mapující databázovou entitu "typ" na java objekt.
+ * Více info viz dokumentace relačního modelu.
+ */
 @Entity
 @Table(name = "typ", schema = "public", catalog = "ristaurace")
 public class TypEntity {

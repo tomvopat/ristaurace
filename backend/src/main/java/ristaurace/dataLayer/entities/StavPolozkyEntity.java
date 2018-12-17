@@ -9,6 +9,10 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+/**
+ * Třída mapující databázovou entitu "stav_polozky" na java objekt.
+ * Více info viz dokumentace relačního modelu.
+ */
 @Entity
 @Table(name = "stav_polozky", schema = "public", catalog = "ristaurace")
 public class StavPolozkyEntity {

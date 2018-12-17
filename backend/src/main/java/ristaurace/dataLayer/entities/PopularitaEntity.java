@@ -6,6 +6,10 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+/**
+ * Třída mapující databázovou entitu "popularita" na java objekt.
+ * Více info viz dokumentace relačního modelu.
+ */
 @Entity
 @Table(name = "popularita", schema = "public", catalog = "ristaurace")
 public class PopularitaEntity {

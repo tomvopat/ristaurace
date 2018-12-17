@@ -5,6 +5,10 @@ package ristaurace.dataLayer.entities;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * Třída mapující databázovou entitu "stul" na java objekt.
+ * Více info viz dokumentace relačního modelu.
+ */
 @Entity
 @Table(name = "stul", schema = "public", catalog = "ristaurace")
 public class StulEntity {

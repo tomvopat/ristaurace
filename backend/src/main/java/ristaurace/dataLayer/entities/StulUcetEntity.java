@@ -7,6 +7,10 @@ import ristaurace.dataLayer.helpObjects.StavEnum;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * Třída mapující databázovou entitu "stul_ucet" na java objekt.
+ * Více info viz dokumentace relačního modelu.
+ */
 @Entity
 @Table(name = "stul_ucet", schema = "public", catalog = "ristaurace")
 public class StulUcetEntity {
