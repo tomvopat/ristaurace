@@ -9,6 +9,10 @@ import ristaurace.dataLayer.repository.TypRepository;
 
 import java.util.List;
 
+/**
+ * Tato třída implementuje business logiku pro práci s typy jídel.
+ * Stará se o získání všech možných typů jídel z menu.
+ */
 @Service
 public class TypeBusiness {
 

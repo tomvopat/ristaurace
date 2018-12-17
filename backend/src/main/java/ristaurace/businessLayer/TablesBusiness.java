@@ -9,6 +9,10 @@ import ristaurace.dataLayer.repository.StulRepository;
 
 import java.util.List;
 
+/**
+ * Tato třída implementuje business logiku pro spravování stolů
+ * Stará se o vracení všech stolů, které jsou k dispozici.
+ */
 @Service
 public class TablesBusiness {
 

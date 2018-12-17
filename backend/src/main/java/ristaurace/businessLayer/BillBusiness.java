@@ -15,6 +15,10 @@ import ristaurace.dataLayer.repository.UcetRepository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Tato třída implementuje business logiku pro účty od zákazníků.
+ * Stará se o získávání aktuálních účtů, vytváření nových a změnu jejich stavu.
+ */
 @Service
 public class BillBusiness {
 
@@ -67,6 +71,12 @@ public class BillBusiness {
         return stulUcetRepository.findAllClosed();
     }
 
+    /**
+     * Pro účet zadaný identifikátorem nastaví určitý stav
+     * @param id
+     * @param stav
+     * @return
+     */
     private StulUcetEntity setState(Integer id, StavEnum stav) {
         if(stav == StavEnum.pripraveny) return null;
 

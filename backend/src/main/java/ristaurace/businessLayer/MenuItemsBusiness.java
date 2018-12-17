@@ -16,6 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Tato třída implementuje business logiku pro práci s položkami na menu.
+ * Stará se získávání všech položek, získávání všech položek určité kategorie a přiřazování položek z menu na nějaký účet.
+ */
 @Service
 public class MenuItemsBusiness {
     @Autowired

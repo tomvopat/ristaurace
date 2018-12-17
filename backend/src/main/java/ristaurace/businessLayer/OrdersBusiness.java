@@ -12,6 +12,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Tato třída implementuje logiku pro práci s objednávkami.
+ * Stará se o získávání všech aktuálně objednaných položek, získání čekajících objednávek a změnu stavu nějaké objednávky.
+ */
 @Service
 public class OrdersBusiness {
 
@@ -35,10 +39,6 @@ public class OrdersBusiness {
         Optional<StavPolozkyEntity> stavPolozky =  stavPolozkyRepository.findById(id);
         if(!stavPolozky.isPresent()) return null;
         return stavPolozky.get();
-    }
-
-    public String getOrdersDate(LocalDate date) {
-        return "All orders on date.";
     }
 
     /**
@@ -65,6 +65,12 @@ public class OrdersBusiness {
         return stavPolozkyRepository.findAllClosed();
     }
 
+    /**
+     * Nastaví určitý stav položce podle zadaného identifikátoru
+     * @param orderId
+     * @param stav
+     * @return
+     */
     public StavPolozkyEntity setOrderAs(Integer orderId, StavEnum stav) {
         Optional<StavPolozkyEntity> stavPolozkyOptional = stavPolozkyRepository.findById(orderId);
         if(!stavPolozkyOptional.isPresent()) return null;
@@ -100,6 +106,12 @@ public class OrdersBusiness {
         return setOrderAs(id, StavEnum.zavreny);
     }
 
+    /**
+     * Nastaví všem položkám z účtu, který je zadán identifikátorem, nějaký stav.
+     * @param ucet_id
+     * @param stav
+     * @return
+     */
     public List<StavPolozkyEntity> setAllOrdersWithSomeBillAs(Integer ucet_id, StavEnum stav) {
         List<StavPolozkyEntity> stavPolozkyEntityList = stavPolozkyRepository.findAllWithBill(ucet_id);
         for(StavPolozkyEntity stavPolozky : stavPolozkyEntityList) {
